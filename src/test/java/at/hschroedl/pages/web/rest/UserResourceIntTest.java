@@ -8,7 +8,6 @@ import at.hschroedl.pages.security.AuthoritiesConstants;
 import at.hschroedl.pages.service.MailService;
 import at.hschroedl.pages.service.UserService;
 import at.hschroedl.pages.service.dto.UserDTO;
-import at.hschroedl.pages.service.mapper.UserMapper;
 import at.hschroedl.pages.web.rest.errors.ExceptionTranslator;
 import at.hschroedl.pages.web.rest.vm.ManagedUserVM;
 import org.apache.commons.lang3.RandomStringUtils;
@@ -28,7 +27,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import java.time.Instant;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -81,9 +79,6 @@ public class UserResourceIntTest {
 
     @Autowired
     private UserService userService;
-
-    @Autowired
-    private UserMapper userMapper;
 
     @Autowired
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
@@ -548,75 +543,6 @@ public class UserResourceIntTest {
         assertThat(user1).isNotEqualTo(user2);
     }
 
-    @Test
-    public void testUserFromId() {
-        assertThat(userMapper.userFromId(DEFAULT_ID).getId()).isEqualTo(DEFAULT_ID);
-        assertThat(userMapper.userFromId(null)).isNull();
-    }
-
-    @Test
-    public void testUserDTOtoUser() {
-        UserDTO userDTO = new UserDTO(
-            DEFAULT_ID,
-            DEFAULT_LOGIN,
-            DEFAULT_FIRSTNAME,
-            DEFAULT_LASTNAME,
-            DEFAULT_EMAIL,
-            true,
-            DEFAULT_IMAGEURL,
-            DEFAULT_LANGKEY,
-            DEFAULT_LOGIN,
-            null,
-            DEFAULT_LOGIN,
-            null,
-            Stream.of(AuthoritiesConstants.USER).collect(Collectors.toSet()));
-        User user = userMapper.userDTOToUser(userDTO);
-        assertThat(user.getId()).isEqualTo(DEFAULT_ID);
-        assertThat(user.getLogin()).isEqualTo(DEFAULT_LOGIN);
-        assertThat(user.getFirstName()).isEqualTo(DEFAULT_FIRSTNAME);
-        assertThat(user.getLastName()).isEqualTo(DEFAULT_LASTNAME);
-        assertThat(user.getEmail()).isEqualTo(DEFAULT_EMAIL);
-        assertThat(user.getActivated()).isEqualTo(true);
-        assertThat(user.getImageUrl()).isEqualTo(DEFAULT_IMAGEURL);
-        assertThat(user.getLangKey()).isEqualTo(DEFAULT_LANGKEY);
-        assertThat(user.getCreatedBy()).isNull();
-        assertThat(user.getCreatedDate()).isNotNull();
-        assertThat(user.getLastModifiedBy()).isNull();
-        assertThat(user.getLastModifiedDate()).isNotNull();
-        assertThat(user.getAuthorities()).extracting("name").containsExactly(AuthoritiesConstants.USER);
-    }
-
-    @Test
-    public void testUserToUserDTO() {
-        user.setId(DEFAULT_ID);
-        user.setCreatedBy(DEFAULT_LOGIN);
-        user.setCreatedDate(Instant.now());
-        user.setLastModifiedBy(DEFAULT_LOGIN);
-        user.setLastModifiedDate(Instant.now());
-
-        Set<Authority> authorities = new HashSet<>();
-        Authority authority = new Authority();
-        authority.setName(AuthoritiesConstants.USER);
-        authorities.add(authority);
-        user.setAuthorities(authorities);
-
-        UserDTO userDTO = userMapper.userToUserDTO(user);
-
-        assertThat(userDTO.getId()).isEqualTo(DEFAULT_ID);
-        assertThat(userDTO.getLogin()).isEqualTo(DEFAULT_LOGIN);
-        assertThat(userDTO.getFirstName()).isEqualTo(DEFAULT_FIRSTNAME);
-        assertThat(userDTO.getLastName()).isEqualTo(DEFAULT_LASTNAME);
-        assertThat(userDTO.getEmail()).isEqualTo(DEFAULT_EMAIL);
-        assertThat(userDTO.isActivated()).isEqualTo(true);
-        assertThat(userDTO.getImageUrl()).isEqualTo(DEFAULT_IMAGEURL);
-        assertThat(userDTO.getLangKey()).isEqualTo(DEFAULT_LANGKEY);
-        assertThat(userDTO.getCreatedBy()).isEqualTo(DEFAULT_LOGIN);
-        assertThat(userDTO.getCreatedDate()).isEqualTo(user.getCreatedDate());
-        assertThat(userDTO.getLastModifiedBy()).isEqualTo(DEFAULT_LOGIN);
-        assertThat(userDTO.getLastModifiedDate()).isEqualTo(user.getLastModifiedDate());
-        assertThat(userDTO.getAuthorities()).containsExactly(AuthoritiesConstants.USER);
-        assertThat(userDTO.toString()).isNotNull();
-    }
 
     @Test
     public void testAuthorityEquals() throws Exception {
