@@ -1,8 +1,9 @@
 <?xml version="1.1" encoding="UTF-8" standalone="no"?>
 <databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
-    <changeSet author="hschroedl" id="1500227654207-1">
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet author="hschroedl (generated)" id="1500396378636-1">
         <createTable tableName="document">
             <column autoIncrement="true" name="id" type="BIGINT">
                 <constraints primaryKey="true" primaryKeyName="documentPK"/>
@@ -18,8 +19,15 @@
             <column name="content" type="CLOB"/>
             <column name="description" type="VARCHAR(255)"/>
             <column name="name" type="VARCHAR(255)"/>
+            <column name="user_id" type="BIGINT"/>
         </createTable>
 
+
+    </changeSet>
+    <changeSet author="hschroedl (generated)" id="1500396378636-2">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="document"
+                                 constraintName="FKivfi0t1f6ci393p1ap933yw4g" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"/>
         <loadData encoding="UTF-8"
                   file="config/liquibase/documents.csv"
                   separator=";"
@@ -27,7 +35,6 @@
             <column name="activated" type="boolean"/>
             <column name="created_date" type="timestamp"/>
         </loadData>
-        <dropDefaultValue tableName="document" columnName="created_date" columnDataType="datetime"/>
-
     </changeSet>
+
 </databaseChangeLog>

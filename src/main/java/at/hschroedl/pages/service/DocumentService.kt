@@ -2,6 +2,7 @@ package at.hschroedl.pages.service
 
 
 import at.hschroedl.pages.domain.Document
+import at.hschroedl.pages.domain.User
 import at.hschroedl.pages.repository.DocumentRepository
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Service
@@ -16,5 +17,9 @@ class DocumentService(var documentRepository: DocumentRepository) {
 
     fun findAll() : List<Document>? {
         return documentRepository.findAll()
+    }
+
+    fun findByUser(userId : Long) : List<Document>? {
+        return documentRepository.findByUserId(userId)
     }
 }

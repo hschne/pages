@@ -1,8 +1,6 @@
 package at.hschroedl.pages.domain
 
-import org.springframework.data.annotation.CreatedDate
 import java.io.Serializable
-import java.time.Instant
 import java.util.*
 import javax.persistence.*
 import javax.validation.constraints.NotNull
@@ -25,7 +23,11 @@ data class Document(
 
     @Size(min = 1)
     @Column(columnDefinition = "TEXT")
-    var content: String
+    var content: String,
+
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="user_id")
+    var user : User
 
 ) : AbstractAuditingEntity(), Serializable {
 
