@@ -8,14 +8,14 @@
             <column autoIncrement="true" name="id" type="BIGINT">
                 <constraints primaryKey="true" primaryKeyName="documentPK"/>
             </column>
-            <column name="created_by" type="VARCHAR(50)">
+            <column name="created_by" type="VARCHAR(50)" defaultValue="system">
                 <constraints nullable="false"/>
             </column>
             <column name="created_date" type="TIMESTAMP" defaultValueDate="${now}">
                 <constraints nullable="false"/>
             </column>
-            <column name="last_modified_by" type="VARCHAR(50)"/>
-            <column name="last_modified_date" type="TIMESTAMP"/>
+            <column name="last_modified_by" type="VARCHAR(50)" defaultValue="system"/>
+            <column name="last_modified_date" type="TIMESTAMP" />
             <column name="content" type="CLOB"/>
             <column name="description" type="VARCHAR(255)"/>
             <column name="name" type="VARCHAR(255)"/>
@@ -32,7 +32,6 @@
                   file="config/liquibase/documents.csv"
                   separator=";"
                   tableName="document">
-            <column name="activated" type="boolean"/>
             <column name="created_date" type="timestamp"/>
         </loadData>
     </changeSet>

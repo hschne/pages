@@ -22,14 +22,16 @@ data class Document(
     var description: String,
 
     @Size(min = 1)
-    @Column(columnDefinition = "TEXT")
+    @Lob
     var content: String,
 
-    @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="user_id")
-    var user : User
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    var user: User
 
 ) : AbstractAuditingEntity(), Serializable {
+
+    constructor() : this(null, "", "", "", User())
 
     override fun hashCode(): Int {
         return Objects.hashCode(id)
