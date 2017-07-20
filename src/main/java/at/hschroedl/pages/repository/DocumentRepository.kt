@@ -6,5 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository
 
 interface DocumentRepository : JpaRepository<Document, Long> {
 
-    fun findByUserId(userId : Long) : List<Document>
+    fun findByUserId(userId: Long): List<Document>
 }

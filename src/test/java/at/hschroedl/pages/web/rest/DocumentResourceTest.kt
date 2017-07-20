@@ -8,6 +8,7 @@ import at.hschroedl.pages.service.DocumentService
 import at.hschroedl.pages.service.UserService
 import at.hschroedl.pages.service.dto.DocumentDTO
 import at.hschroedl.pages.web.rest.errors.ExceptionTranslator
+import at.hschroedl.pages.web.rest.util.HeaderUtil
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Before
 import org.junit.Test
@@ -21,7 +22,7 @@ import org.springframework.data.web.PageableHandlerMethodArgumentResolver
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter
 import org.springframework.test.context.junit4.SpringRunner
 import org.springframework.test.web.servlet.MockMvc
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.header
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
 import org.springframework.test.web.servlet.setup.MockMvcBuilders
@@ -33,11 +34,17 @@ import java.time.Instant
 open class DocumentResourceTest {
 
 
-    private val DEFAULT_NAME = "MyDocument"
+    private val DEFAULT_NAME = "DefaultDocument"
 
-    private val DEFAULT_DESCRIPTION = "MyDescription"
+    private val DEFAULT_DESCRIPTION = "DefaultDescription"
 
     private val DEFAULT_CONTENT = "DefaultContent"
+
+    private val UPDATED_NAME = "UpdatedDocument"
+
+    private val UPDATED_DESCRIPTION = "UpdatedDescription"
+
+    private val UPDATED_CONTENT = "UpdatedContent"
 
     @Autowired
     private lateinit var documentRespository: DocumentRepository
@@ -92,8 +99,7 @@ open class DocumentResourceTest {
     }
 
     @Test
-    @Transactional
-    open fun createDocument_withExistingId_returnsBadRequest() {
+    fun createDocument_withExistingId_returnsBadRequest() {
         val documentDto = DocumentDTO(1, DEFAULT_NAME, DEFAULT_DESCRIPTION, DEFAULT_CONTENT, Instant.now())
         createCurrentUser()
 
@@ -114,9 +120,91 @@ open class DocumentResourceTest {
             .andExpect(status().isInternalServerError)
     }
 
+    @Test
+    @Transactional
+    open fun updateDocument_withValidDocument_updatesDocument() {
+        val documentDto = DocumentDTO(1, UPDATED_NAME, UPDATED_DESCRIPTION, UPDATED_CONTENT, Instant.now())
+        createCurrentUser()
+
+        restUserMockMvc.perform(put("/api/documents")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(documentDto)))
+            .andExpect(status().isOk)
+
+        val document = documentRespository.findOne(1)
+        assertThat(document.name).isEqualTo(UPDATED_NAME)
+        assertThat(document.content).isEqualTo(UPDATED_CONTENT)
+        assertThat(document.description).isEqualTo(UPDATED_DESCRIPTION)
+    }
+
+    @Test
+    fun updateDocument_withBadUser_returnsInvalidServerError() {
+        val documentDto = DocumentDTO(2, UPDATED_NAME, UPDATED_DESCRIPTION, UPDATED_CONTENT, Instant.now())
+        createCurrentUser()
+
+        restUserMockMvc.perform(put("/api/documents")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(documentDto)))
+            .andExpect(status().isInternalServerError)
+    }
+
+    @Test
+    fun updateDocument_withInvalidDocument_returnsNotFound() {
+        val documentDto = DocumentDTO(-1, UPDATED_NAME, UPDATED_DESCRIPTION, UPDATED_CONTENT, Instant.now())
+        createCurrentUser()
+
+        restUserMockMvc.perform(put("/api/documents")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(documentDto)))
+            .andExpect(status().isNotFound)
+    }
+
+    @Test
+    @Transactional
+    open fun deleteDocument_withValidDocument_deletesDocument() {
+        val databaseSizeBeforeCreate = documentRespository.findAll().size
+        val document = documentRespository.findOne(1)
+        val documentDto = DocumentDTO(1, UPDATED_NAME, UPDATED_DESCRIPTION, UPDATED_CONTENT, Instant.now())
+        createCurrentUser()
+
+        restUserMockMvc.perform(delete("/api/documents")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(documentDto)))
+            .andExpect(status().isOk)
+
+        val documentList = documentRespository.findAll()
+        assertThat<Document>(documentList).hasSize(databaseSizeBeforeCreate - 1)
+        assertThat<Document>(documentList).doesNotContain(document)
+    }
+
+    @Test
+    fun deleteDocument_withInvalidDocument_returnsNotFoundError() {
+        val documentDto = DocumentDTO(-1, UPDATED_NAME, UPDATED_DESCRIPTION, UPDATED_CONTENT, Instant.now())
+        createCurrentUser()
+
+        restUserMockMvc.perform(delete("/api/documents")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(documentDto)))
+            .andExpect(status().isNotFound)
+    }
+
+    @Test
+    @Transactional
+    open fun deleteDocument_withBadUser_returnsBadRequest() {
+        val documentDto = DocumentDTO(2, UPDATED_NAME, UPDATED_DESCRIPTION, UPDATED_CONTENT, Instant.now())
+        createCurrentUser()
+
+        restUserMockMvc.perform(delete("/api/documents")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(documentDto)))
+            .andExpect(status().isBadRequest)
+            .andExpect(header().string(HeaderUtil.ERROR_HEADER, "User not authorized to delete this document"))
+    }
+
+
     private fun createCurrentUser(): User {
         val user = User()
-        user.id = 1
+        user.id = 3
         `when`<User>(mockUserService.userWithAuthorities).thenReturn(user)
         return user
     }
