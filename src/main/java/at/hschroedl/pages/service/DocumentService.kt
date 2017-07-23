@@ -5,6 +5,7 @@ import at.hschroedl.pages.domain.Document
 import at.hschroedl.pages.domain.User
 import at.hschroedl.pages.repository.DocumentRepository
 import at.hschroedl.pages.service.dto.DocumentDTO
+import at.hschroedl.pages.service.mapper.DocumentMapper
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
@@ -12,14 +13,16 @@ import org.springframework.transaction.annotation.Transactional
 
 @Service
 @Transactional
-class DocumentService(private var documentRepository: DocumentRepository) {
+class DocumentService(private var documentRepository: DocumentRepository, private var documentMapper: DocumentMapper) {
 
     private val log = LoggerFactory.getLogger(DocumentService::class.java)
 
-    fun findAll(): List<Document> {
-        return documentRepository.findAll()
+    @Transactional(readOnly = true)
+    fun findAll(): List<DocumentDTO> {
+        return documentRepository.findAll().map { documentMapper.toDto(it) }
     }
 
+    @Transactional(readOnly = true)
     fun findByUser(user: User): List<Document> {
         return documentRepository.findByUserId(user.id)
     }
@@ -35,8 +38,11 @@ class DocumentService(private var documentRepository: DocumentRepository) {
         return result
     }
 
-    fun getById(documentDTO: DocumentDTO): Document? {
-        return documentRepository.findOne(documentDTO.id)
+    @Transactional(readOnly = true)
+    fun findOne(id: Long?): DocumentDTO? {
+        log.debug("Request to get Document with id : {}", id)
+        val document = documentRepository.findOne(id) ?: null
+        return documentMapper.toDto(document)
     }
 
     fun update(documentDTO: DocumentDTO): DocumentDTO {
@@ -48,9 +54,8 @@ class DocumentService(private var documentRepository: DocumentRepository) {
         return DocumentDTO(document)
     }
 
-    fun deleteDocument(documentDTO: DocumentDTO) {
-        val document = documentRepository.findOne(documentDTO.id) ?: return
-        documentRepository.delete(document)
-        log.debug("Deleted document: {}", document)
+    fun deleteDocument(id: Long?) {
+        log.debug("Request to delete document with id: {}", id)
+        documentRepository.delete(id)
     }
 }

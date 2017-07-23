@@ -25,7 +25,7 @@ data class Document(
     @Lob
     var content: String,
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "user_id")
     var user: User
 

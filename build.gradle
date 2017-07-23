@@ -24,6 +24,7 @@ buildscript {
 }
 
 apply plugin: 'java'
+apply plugin: 'idea'
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 apply plugin: 'kotlin'
@@ -41,8 +42,28 @@ bootRepackage {
     mainClass = 'at.hschroedl.pages.PagesApp'
 }
 
+
 war {
 
+}
+
+idea {
+    module {
+        inheritOutputDirs = true
+        generatedSourceDirs += file("build/generated/source/apt")
+    }
+    module.iml.withXml {
+        def node = it.asNode()
+        def content = node.component.find { it.'@name' == 'NewModuleRootManager' }.content[0]
+        content.sourceFolder.each { sourceFolder ->
+            if(sourceFolder.@url?.endsWith('/resources')) {
+                sourceFolder.attributes().with {
+                    boolean isTestSource = (remove('isTestSource') == 'true')
+                    put('type', isTestSource ? 'java-test-resource' : 'java-resource')
+                }
+            }
+        }
+    }
 }
 
 springBoot {

@@ -7,12 +7,13 @@ import at.hschroedl.pages.service.UserService
 import at.hschroedl.pages.service.dto.DocumentDTO
 import at.hschroedl.pages.web.rest.util.HeaderUtil
 import com.codahale.metrics.annotation.Timed
+import io.github.jhipster.web.util.ResponseUtil
 import org.slf4j.LoggerFactory
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
-import org.springframework.transaction.annotation.Transactional
 import org.springframework.web.bind.annotation.*
 import java.net.URI
+import java.util.*
 import javax.validation.Valid
 
 @RestController
@@ -27,9 +28,9 @@ class DocumentResource(val documentService: DocumentService, var userService: Us
     @Timed
     fun getDocuments(): ResponseEntity<List<DocumentDTO>> {
         log.debug("Rest request to get documents")
-        val currentUser: User? = userService.userWithAuthorities ?: return ResponseEntity(
+        val currentUser: User = userService.userWithAuthorities ?: return ResponseEntity(
             HttpStatus.INTERNAL_SERVER_ERROR)
-        return ResponseEntity.ok(documentService.findByUser(currentUser!!).map { DocumentDTO(it) })
+        return ResponseEntity.ok(documentService.findByUser(currentUser).map { DocumentDTO(it) })
     }
 
     @PostMapping("/documents")
@@ -58,9 +59,9 @@ class DocumentResource(val documentService: DocumentService, var userService: Us
         log.debug("REST request to update document {}", documentDTO)
         val currentUser: User? = userService.userWithAuthorities ?: return ResponseEntity(
             HttpStatus.INTERNAL_SERVER_ERROR)
-        val existingDocument = documentService.getById(documentDTO) ?: return ResponseEntity(
+        val existingDocument = documentService.findOne(documentDTO.id) ?: return ResponseEntity(
             HttpStatus.NOT_FOUND)
-        if (existingDocument.user.id != currentUser!!.id) {
+        if (existingDocument.userId != currentUser!!.id) {
             return ResponseEntity.badRequest().headers(
                 HeaderUtil.createFailureAlert(ENTITY_NAME, "invaliduser",
                     "User not authorized to modify this document")).body<DocumentDTO>(null)
@@ -68,24 +69,33 @@ class DocumentResource(val documentService: DocumentService, var userService: Us
         return ResponseEntity.ok(documentService.update(documentDTO))
     }
 
-    @DeleteMapping("/documents")
+    @DeleteMapping("/documents/delete/{id}")
     @Timed
-    fun deleteDocument(@Valid @RequestBody documentDTO: DocumentDTO): ResponseEntity<Nothing?> {
-        log.debug("REST request to delete document {}", documentDTO)
-        val currentUser: User? = userService.userWithAuthorities ?: return ResponseEntity(
+    fun deleteDocument(@PathVariable id: Long?): ResponseEntity<Void> {
+        log.debug("REST request to delete documen with idt {}", id)
+        val currentUser: User = userService.userWithAuthorities ?: return ResponseEntity(
             HttpStatus.INTERNAL_SERVER_ERROR)
-        val existingDocument = documentService.getById(documentDTO) ?: return ResponseEntity(
+        val existingDocument = documentService.findOne(id) ?: return ResponseEntity(
             HttpStatus.NOT_FOUND)
-        if (existingDocument.user != currentUser) {
-            var result =  ResponseEntity.badRequest().headers(
+        if (existingDocument.userId != currentUser.id) {
+            var result = ResponseEntity.badRequest().headers(
                 HeaderUtil.createFailureAlert(ENTITY_NAME, "invaliduser",
-                    "User not authorized to delete this document"))?.body(null)
-            return result!!
+                    "User not authorized to delete this document")).body<Void>(null)
+            return result
         }
-        documentService.deleteDocument(documentDTO)
+        documentService.deleteDocument(id)
         return ResponseEntity.ok().headers(
-            HeaderUtil.createAlert("A document is deleted with identifier " + documentDTO.id,
-                documentDTO.id.toString())).build()
+            HeaderUtil.createAlert("A document is deleted with identifier " + id,
+                id.toString())).build()
+    }
+
+
+    @GetMapping("/documents/{id}")
+    @Timed
+    fun getSample(@PathVariable id: Long?): ResponseEntity<DocumentDTO> {
+        log.debug("REST request to get Sample : {}", id)
+        val documentDto = documentService.findOne(id)
+        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(documentDto))
     }
 
 

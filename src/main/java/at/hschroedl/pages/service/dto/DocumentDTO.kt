@@ -17,8 +17,12 @@ data class DocumentDTO(
 
     @Size(min = 1)
     var content: String,
-    var createdDate: Instant) {
 
+    var createdDate: Instant,
+
+    var userId: Long? = null,
+
+    var userLogin: String? = null) {
 
     constructor() : this(null, "", "", "", Instant.now())
 
