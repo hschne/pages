@@ -1,11 +1,10 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
-import { PagesSampleModule } from './sample/sample.module';
-/* jhipster-needle-add-entity-module-import - JHipster will add entity modules imports here */
+import {PagesDocumentModule} from "./document/document.module";
 
 @NgModule({
     imports: [
-        PagesSampleModule,
+        PagesDocumentModule
         /* jhipster-needle-add-entity-module - JHipster will add entity modules here */
     ],
     declarations: [],

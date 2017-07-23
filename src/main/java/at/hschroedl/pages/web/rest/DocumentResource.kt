@@ -24,7 +24,7 @@ class DocumentResource(val documentService: DocumentService, var userService: Us
 
     private val log = LoggerFactory.getLogger(DocumentResource::class.java)
 
-    @GetMapping("/documents")
+    @GetMapping("/document")
     @Timed
     fun getDocuments(): ResponseEntity<List<DocumentDTO>> {
         log.debug("Rest request to get documents")
@@ -33,7 +33,7 @@ class DocumentResource(val documentService: DocumentService, var userService: Us
         return ResponseEntity.ok(documentService.findByUser(currentUser).map { DocumentDTO(it) })
     }
 
-    @PostMapping("/documents")
+    @PostMapping("/document")
     @Timed
     fun createDocument(@Valid @RequestBody documentDTO: DocumentDTO): ResponseEntity<*> {
         log.debug("REST request to create document {}", documentDTO)
@@ -53,7 +53,7 @@ class DocumentResource(val documentService: DocumentService, var userService: Us
             .body<Document>(newDocument)
     }
 
-    @PutMapping("/documents")
+    @PutMapping("/document")
     @Timed
     fun updateDocument(@Valid @RequestBody documentDTO: DocumentDTO): ResponseEntity<DocumentDTO> {
         log.debug("REST request to update document {}", documentDTO)
@@ -69,7 +69,7 @@ class DocumentResource(val documentService: DocumentService, var userService: Us
         return ResponseEntity.ok(documentService.update(documentDTO))
     }
 
-    @DeleteMapping("/documents/delete/{id}")
+    @DeleteMapping("/document/{id}")
     @Timed
     fun deleteDocument(@PathVariable id: Long?): ResponseEntity<Void> {
         log.debug("REST request to delete documen with idt {}", id)
@@ -90,7 +90,7 @@ class DocumentResource(val documentService: DocumentService, var userService: Us
     }
 
 
-    @GetMapping("/documents/{id}")
+    @GetMapping("/document/{id}")
     @Timed
     fun getSample(@PathVariable id: Long?): ResponseEntity<DocumentDTO> {
         log.debug("REST request to get Sample : {}", id)

@@ -7,21 +7,21 @@ import { Observable } from 'rxjs/Rx';
 import { JhiDateUtils, JhiDataUtils, JhiEventManager } from 'ng-jhipster';
 import { PagesTestModule } from '../../../test.module';
 import { MockActivatedRoute } from '../../../helpers/mock-route.service';
-import { SampleDetailComponent } from '../../../../../../main/webapp/app/entities/sample/sample-detail.component';
-import { SampleService } from '../../../../../../main/webapp/app/entities/sample/sample.service';
-import { Sample } from '../../../../../../main/webapp/app/entities/sample/sample.model';
+import { DocumentDetailComponent } from '../../../../../../main/webapp/app/entities/document/document-detail.component';
+import { DocumentService } from '../../../../../../main/webapp/app/entities/document/document.service';
+import { Document } from '../../../../../../main/webapp/app/entities/document/document.model';
 
 describe('Component Tests', () => {
 
-    describe('Sample Management Detail Component', () => {
-        let comp: SampleDetailComponent;
-        let fixture: ComponentFixture<SampleDetailComponent>;
-        let service: SampleService;
+    describe('Document Management Detail Component', () => {
+        let comp: DocumentDetailComponent;
+        let fixture: ComponentFixture<DocumentDetailComponent>;
+        let service: DocumentService;
 
         beforeEach(async(() => {
             TestBed.configureTestingModule({
                 imports: [PagesTestModule],
-                declarations: [SampleDetailComponent],
+                declarations: [DocumentDetailComponent],
                 providers: [
                     JhiDateUtils,
                     JhiDataUtils,
@@ -30,31 +30,31 @@ describe('Component Tests', () => {
                         provide: ActivatedRoute,
                         useValue: new MockActivatedRoute({id: 123})
                     },
-                    SampleService,
+                    DocumentService,
                     JhiEventManager
                 ]
-            }).overrideTemplate(SampleDetailComponent, '')
+            }).overrideTemplate(DocumentDetailComponent, '')
             .compileComponents();
         }));
 
         beforeEach(() => {
-            fixture = TestBed.createComponent(SampleDetailComponent);
+            fixture = TestBed.createComponent(DocumentDetailComponent);
             comp = fixture.componentInstance;
-            service = fixture.debugElement.injector.get(SampleService);
+            service = fixture.debugElement.injector.get(DocumentService);
         });
 
         describe('OnInit', () => {
             it('Should call load all on init', () => {
             // GIVEN
 
-            spyOn(service, 'find').and.returnValue(Observable.of(new Sample(10)));
+            spyOn(service, 'find').and.returnValue(Observable.of(new Document(10)));
 
             // WHEN
             comp.ngOnInit();
 
             // THEN
             expect(service.find).toHaveBeenCalledWith(123);
-            expect(comp.sample).toEqual(jasmine.objectContaining({id: 10}));
+            expect(comp.document).toEqual(jasmine.objectContaining({id: 10}));
             });
         });
     });
