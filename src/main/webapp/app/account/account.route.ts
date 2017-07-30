@@ -10,7 +10,6 @@ import {
     settingsRoute,
     loginRoute
 } from './';
-import {} from './login/login.route';
 
 const ACCOUNT_ROUTES = [
     activateRoute,

@@ -25,7 +25,7 @@ import {
 @NgModule({
     imports: [
         PagesSharedModule,
-        RouterModule.forRoot(accountState, { useHash: true })
+        RouterModule.forRoot(accountState, { useHash: true }),
     ],
     declarations: [
         ActivateComponent,
