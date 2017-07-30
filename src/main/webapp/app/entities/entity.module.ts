@@ -1,6 +1,6 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
-import {PagesDocumentModule} from "./document/document.module";
+import {PagesDocumentModule} from './document/document.module';
 
 @NgModule({
     imports: [

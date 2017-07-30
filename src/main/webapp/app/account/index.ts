@@ -5,6 +5,8 @@ export * from './password/password.component';
 export * from './password/password-strength-bar.component';
 export * from './password/password.service';
 export * from './password/password.route';
+export * from './login/login.component';
+export * from './login/login.route';
 export * from './password-reset/finish/password-reset-finish.component';
 export * from './password-reset/finish/password-reset-finish.service';
 export * from './password-reset/finish/password-reset-finish.route';

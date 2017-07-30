@@ -1,14 +1,16 @@
-import { Routes } from '@angular/router';
+import {Routes} from '@angular/router';
 
 import {
     activateRoute,
-    passwordRoute,
     passwordResetFinishRoute,
     passwordResetInitRoute,
+    passwordRoute,
     registerRoute,
     sessionsRoute,
-    settingsRoute
+    settingsRoute,
+    loginRoute
 } from './';
+import {} from './login/login.route';
 
 const ACCOUNT_ROUTES = [
     activateRoute,
@@ -17,7 +19,8 @@ const ACCOUNT_ROUTES = [
     passwordResetInitRoute,
     registerRoute,
     sessionsRoute,
-    settingsRoute
+    settingsRoute,
+    loginRoute
 ];
 
 export const accountState: Routes = [{

@@ -14,7 +14,7 @@ import {
     DocumentDeleteDialogComponent,
     documentRoute,
     documentPopupRoute,
-} from "./";
+} from './';
 
 const ENTITY_STATES = [
     ...documentRoute,
