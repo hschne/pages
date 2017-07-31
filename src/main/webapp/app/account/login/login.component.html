@@ -1,3 +1,63 @@
-<p>
-  login works!
-</p>
+<div class="container-full d-flex flex-column h-100 justify-content-between">
+    <div class="container navbar navbar-default">Whoolla</div>
+    <div class="container d-flex align-items-center">
+        <div class="row justify-content-center" style="width: 100%">
+            <div class="col-md-6 col-md-offset-3" id="box">
+                <h2>Login</h2>
+                <div class="alert alert-danger" *ngIf="authenticationError">
+                    <strong>Failed to sign in!</strong> Please check your credentials and try again.
+                </div>
+                <form class="form" role="form" (ngSubmit)="login()">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-fw fa-user"></i></span>
+                            <input type="text" class="form-control" name="username" id="username"
+                                   placeholder="Your username"
+                                   [(ngModel)]="username">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-fw fa-key"></i></span>
+                            <input type="password" class="form-control" name="password" id="password"
+                                   placeholder="Your password"
+                                   [(ngModel)]="password">
+                        </div>
+                    </div>
+                    <div class="form-check">
+                        <label class="form-check-label" for="rememberMe">
+                            <input class="form-check-input" type="checkbox" name="rememberMe" id="rememberMe"
+                                   [(ngModel)]="rememberMe" checked>
+                            <span>Remember me</span>
+                        </label>
+                        <div class="text-center pull-right">
+                            Did you forget your
+                            <a class="text-warning" (click)="requestResetPassword()">password?</a>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-md btn-default col-md-12">Login</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="navbar navbar-default navbar-fixed-bottom">
+        <div class="container">
+            <span class="navbar-text pull-left">Pages © {{ today | date:'y'}}- Site built by Hans-Jörg Schrödl -
+            {{version}}</span>
+            <div class="text-right">
+                <div class="row">
+                    <div class="col-md-12">
+                        <a href="https://github.com/hschroedl/pages"><i class="fa fa-github"
+                                                                        aria-hidden="true"></i> Source on Github</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+

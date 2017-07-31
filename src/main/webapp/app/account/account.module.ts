@@ -1,31 +1,32 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
+import {RouterModule} from '@angular/router';
 
-import { PagesSharedModule } from '../shared';
+import {PagesSharedModule} from '../shared';
 
 import {
-    Register,
-    ActivateService,
-    PasswordService,
-    PasswordResetInitService,
-    PasswordResetFinishService,
-    SessionsService,
-    SessionsComponent,
-    PasswordStrengthBarComponent,
-    RegisterComponent,
-    ActivateComponent,
-    PasswordComponent,
-    PasswordResetInitComponent,
-    PasswordResetFinishComponent,
-    SettingsComponent,
     accountState,
-    LoginComponent
+    ActivateComponent,
+    ActivateService,
+    LoginComponent,
+    PasswordComponent,
+    PasswordResetFinishComponent,
+    PasswordResetFinishService,
+    PasswordResetInitComponent,
+    PasswordResetInitService,
+    PasswordService,
+    PasswordStrengthBarComponent,
+    Register,
+    RegisterComponent,
+    SessionsComponent,
+    SessionsService,
+    SettingsComponent
 } from './';
+import {FooterComponent} from '../layouts/footer/footer.component';
 
 @NgModule({
     imports: [
         PagesSharedModule,
-        RouterModule.forRoot(accountState, { useHash: true }),
+        RouterModule.forRoot(accountState, {useHash: true}),
     ],
     declarations: [
         ActivateComponent,
@@ -48,4 +49,5 @@ import {
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class PagesAccountModule {}
+export class PagesAccountModule {
+}

@@ -1,3 +1,4 @@
+@import "../../../content/scss/variables";
 
 /* ==========================================================================
 Navbar
@@ -8,7 +9,7 @@ Navbar
 }
 
 .jh-navbar {
-    background-color: #353d47;
+    background-color: $primary-color;
     padding: .2em 1em;
     .profile-image {
         margin: -10px 0px;
@@ -17,7 +18,7 @@ Navbar
         border-radius: 50%;
     }
     .dropdown-item.active, .dropdown-item.active:focus, .dropdown-item.active:hover {
-        background-color: #353d47;
+        background-color: $primary-color;
     }
     .dropdown-toggle::after {
         margin-left: 0.15em;
