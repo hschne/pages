@@ -1,9 +1,9 @@
-<div class="container-full d-flex flex-column h-100 justify-content-between">
-    <div class="container navbar navbar-default">Whoolla</div>
+<div class="container-full d-flex flex-column h-75 justify-content-between">
+    <div class=""></div>
     <div class="container d-flex align-items-center">
         <div class="row justify-content-center" style="width: 100%">
             <div class="col-md-6 col-md-offset-3" id="box">
-                <h2>Login</h2>
+                <h2>Login to Pages</h2>
                 <div class="alert alert-danger" *ngIf="authenticationError">
                     <strong>Failed to sign in!</strong> Please check your credentials and try again.
                 </div>
@@ -42,18 +42,15 @@
             </div>
         </div>
     </div>
-    <div class="navbar navbar-default navbar-fixed-bottom">
-        <div class="container">
+    <div></div>
+</div>
+<div class="footer text-center">
+    <div class="container">
             <span class="navbar-text pull-left">Pages © {{ today | date:'y'}}- Site built by Hans-Jörg Schrödl -
             {{version}}</span>
-            <div class="text-right">
-                <div class="row">
-                    <div class="col-md-12">
-                        <a href="https://github.com/hschroedl/pages"><i class="fa fa-github"
-                                                                        aria-hidden="true"></i> Source on Github</a>
-                    </div>
-                </div>
-            </div>
+        <div class="navbar-text pull-right ">
+            <a href="https://github.com/hschroedl/pages"><i class="fa fa-github"
+                                                            a></i> Source on Github</a>
         </div>
     </div>
 </div>

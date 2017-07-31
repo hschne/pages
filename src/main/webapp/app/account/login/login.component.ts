@@ -4,7 +4,7 @@ import {JhiEventManager} from 'ng-jhipster';
 
 import {StateStorageService} from '../../shared/auth/state-storage.service';
 import {LoginService} from '../../shared/login/login.service';
-import {VERSION} from "../../app.constants";
+import {VERSION} from '../../app.constants';
 
 @Component({
     selector: 'jhi-login',
@@ -21,7 +21,6 @@ export class LoginComponent implements AfterViewInit {
     credentials: any;
     version: String;
     today: number = Date.now();
-
     constructor(private eventManager: JhiEventManager,
                 private loginService: LoginService,
                 private stateStorageService: StateStorageService,
@@ -80,6 +79,4 @@ export class LoginComponent implements AfterViewInit {
     requestResetPassword() {
         this.router.navigate(['/reset', 'request']);
     }
-
-
 }
