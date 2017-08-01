@@ -26,7 +26,7 @@ export class LoginComponent implements AfterViewInit {
                 private stateStorageService: StateStorageService,
                 private elementRef: ElementRef,
                 private renderer: Renderer,
-                private router: Router,) {
+                private router: Router) {
         this.credentials = {};
         this.version = VERSION ? 'v' + VERSION : '';
     }
