@@ -1,12 +1,14 @@
 import {Component, OnInit} from '@angular/core';
-import {Account, LoginModalService, Principal} from '../../../shared';
+
 import {JhiEventManager} from 'ng-jhipster';
+import {Principal} from '../shared/index';
+import {LoginModalService} from '../shared/login/login-modal.service';
 
 @Component({
-    selector: 'pages-edit',
-    templateUrl: './document-edit.component.html'
+    selector: 'page-edit',
+    templateUrl: './page-edit.component.html'
 })
-export class DocumentEditComponent implements OnInit {
+export class PageEditComponent implements OnInit {
 
     account: Account;
 

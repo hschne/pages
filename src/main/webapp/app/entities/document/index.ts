@@ -6,4 +6,3 @@ export * from './document-delete-dialog.component';
 export * from './document-detail.component';
 export * from './document.component';
 export * from './document.route';
-export * from './edit/document-edit.component';

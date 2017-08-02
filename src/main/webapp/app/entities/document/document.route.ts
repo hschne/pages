@@ -3,7 +3,6 @@ import {Routes} from '@angular/router';
 import {UserRouteAccessService} from '../../shared';
 
 import {DocumentComponent, DocumentDeletePopupComponent, DocumentDetailComponent, DocumentPopupComponent} from './'
-import {DocumentEditComponent} from './edit/document-edit.component';
 
 export const documentRoute: Routes = [
     {
@@ -22,17 +21,6 @@ export const documentRoute: Routes = [
             pageTitle: 'Documents'
         },
         canActivate: [UserRouteAccessService]
-    }, {
-        path: 'edit',
-        component: DocumentEditComponent,
-        data: {
-            authorities: ['ROLE_USER'],
-            pageTitle: 'Documents'
-        },
-    }, {
-        path: '',
-        redirectTo: '/edit',
-        pathMatch: 'full',
     }
 ];
 

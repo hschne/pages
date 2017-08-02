@@ -1,10 +1,14 @@
 import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 import {RouterModule} from '@angular/router';
 
-import {PagesSharedModule} from '../shared';
+import {
+    DocumentService,
+    page_routes,
+    PageComponent,
+    PageEditComponent
+} from './'
 
-import {PageEditComponent} from './edit/page-edit.component';
-import {page_routes} from './page.route';
+import {PagesSharedModule} from '../shared';
 
 @NgModule({
     imports: [
@@ -12,10 +16,13 @@ import {page_routes} from './page.route';
         RouterModule.forRoot(page_routes, {useHash: true})
     ],
     declarations: [
-        PageEditComponent
+        PageEditComponent,
+        PageComponent
     ],
     entryComponents: [],
-    providers: [],
+    providers: [
+        DocumentService,
+    ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class PagesMainModule {
