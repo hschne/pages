@@ -12,6 +12,7 @@ import {
     DocumentPopupComponent,
     DocumentDeletePopupComponent,
     DocumentDeleteDialogComponent,
+    DocumentEditComponent,
     documentRoute,
     documentPopupRoute,
 } from './';
@@ -34,6 +35,7 @@ const ENTITY_STATES = [
         DocumentDeleteDialogComponent,
         DocumentPopupComponent,
         DocumentDeletePopupComponent,
+        DocumentEditComponent
     ],
     entryComponents: [
         DocumentComponent,

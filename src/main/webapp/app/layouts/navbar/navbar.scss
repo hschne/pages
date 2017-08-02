@@ -8,7 +8,7 @@ Navbar
     color: #ccc
 }
 
-.jh-navbar {
+.pages-navbar {
     background-color: $primary-color;
     padding: .2em 1em;
     .profile-image {
@@ -17,12 +17,11 @@ Navbar
         width: 40px;
         border-radius: 50%;
     }
-    .dropdown-item.active, .dropdown-item.active:focus, .dropdown-item.active:hover {
-        background-color: $primary-color;
-    }
+
     .dropdown-toggle::after {
         margin-left: 0.15em;
     }
+
     ul.navbar-nav {
         padding: 0.5em;
         .nav-item {
@@ -32,8 +31,8 @@ Navbar
     a.nav-link {
         font-weight: 400;
     }
-    .jh-navbar-toggler {
-        color: #ccc;
+    .pages-navbar-toggler {
+        color: $primary-color;
         font-size: 1.5em;
         padding: 10px;
         &:hover {
@@ -41,6 +40,7 @@ Navbar
         }
     }
 }
+
 
 @media screen and (max-width: 992px) {
     .jh-logo-container {

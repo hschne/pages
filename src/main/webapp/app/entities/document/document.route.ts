@@ -1,15 +1,9 @@
-import { Injectable } from '@angular/core';
-import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Routes, CanActivate } from '@angular/router';
+import {Routes} from '@angular/router';
 
-import { UserRouteAccessService } from '../../shared';
-import { JhiPaginationUtil } from 'ng-jhipster';
+import {UserRouteAccessService} from '../../shared';
 
-import { DocumentComponent } from './document.component';
-import { DocumentDetailComponent } from './document-detail.component';
-import { DocumentPopupComponent } from './document-dialog.component';
-import { DocumentDeletePopupComponent } from './document-delete-dialog.component';
-
-import { Principal } from '../../shared';
+import {DocumentComponent, DocumentDeletePopupComponent, DocumentDetailComponent, DocumentPopupComponent} from './'
+import {DocumentEditComponent} from './edit/document-edit.component';
 
 export const documentRoute: Routes = [
     {
@@ -28,6 +22,17 @@ export const documentRoute: Routes = [
             pageTitle: 'Documents'
         },
         canActivate: [UserRouteAccessService]
+    }, {
+        path: 'edit',
+        component: DocumentEditComponent,
+        data: {
+            authorities: ['ROLE_USER'],
+            pageTitle: 'Documents'
+        },
+    }, {
+        path: '',
+        redirectTo: '/edit',
+        pathMatch: 'full',
     }
 ];
 

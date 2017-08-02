@@ -5,7 +5,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { Ng2Webstorage } from 'ng2-webstorage';
 
 import { PagesSharedModule, UserRouteAccessService } from './shared';
-import { PagesHomeModule } from './home/home.module';
 import { PagesAdminModule } from './admin/admin.module';
 import { PagesAccountModule } from './account/account.module';
 import { PagesEntityModule } from './entities/entity.module';
@@ -25,13 +24,15 @@ import {
     ErrorComponent
 } from './layouts';
 
+import {PagesMainModule} from './pages/page.module';
+
 @NgModule({
     imports: [
         BrowserModule,
         LayoutRoutingModule,
         Ng2Webstorage.forRoot({ prefix: 'jhi', separator: '-'}),
         PagesSharedModule,
-        PagesHomeModule,
+        PagesMainModule,
         PagesAdminModule,
         PagesAccountModule,
         PagesEntityModule,
