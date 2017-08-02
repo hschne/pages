@@ -15,7 +15,7 @@ export const page_routes: Routes = [
             component: PageEditComponent,
             data: {
                 authorities: ['ROLE_USER'],
-                pageTitle: 'Welcome to Pages!'
+                pageTitle: 'New Page'
             },
             canActivate: [UserRouteAccessService]
         },
@@ -24,7 +24,7 @@ export const page_routes: Routes = [
             component: PageComponent,
             data: {
                 authorities: ['ROLE_USER'],
-                pageTitle: 'Pages'
+                pageTitle: 'Your Pages'
             },
             canActivate: [UserRouteAccessService]
         },

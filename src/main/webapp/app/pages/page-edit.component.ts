@@ -2,19 +2,21 @@ import {Component, OnInit} from '@angular/core';
 
 import {JhiEventManager} from 'ng-jhipster';
 import {Principal} from '../shared/index';
-import {LoginModalService} from '../shared/login/login-modal.service';
+import {MarkdownService} from './markdown.service';
 
 @Component({
     selector: 'page-edit',
-    templateUrl: './page-edit.component.html'
+    templateUrl: './page-edit.component.html',
+    providers: [MarkdownService]
 })
 export class PageEditComponent implements OnInit {
 
     account: Account;
+    convertedText: string;
 
     constructor(private principal: Principal,
-                private loginModalService: LoginModalService,
-                private eventManager: JhiEventManager) {
+                private eventManager: JhiEventManager,
+                private md: MarkdownService) {
     }
 
     ngOnInit() {
@@ -34,5 +36,9 @@ export class PageEditComponent implements OnInit {
 
     isAuthenticated() {
         return this.principal.isAuthenticated();
+    }
+
+    renderMarkdown(mdText: string) {
+        this.convertedText = this.md.convert(mdText);
     }
 }

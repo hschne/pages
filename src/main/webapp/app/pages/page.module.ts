@@ -9,6 +9,7 @@ import {
 } from './'
 
 import {PagesSharedModule} from '../shared';
+import {MarkdownService} from './markdown.service';
 
 @NgModule({
     imports: [
@@ -22,6 +23,7 @@ import {PagesSharedModule} from '../shared';
     entryComponents: [],
     providers: [
         DocumentService,
+        MarkdownService
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
