@@ -21,6 +21,7 @@ export class LoginComponent implements AfterViewInit {
     credentials: any;
     version: String;
     today: number = Date.now();
+
     constructor(private eventManager: JhiEventManager,
                 private loginService: LoginService,
                 private stateStorageService: StateStorageService,
@@ -63,10 +64,9 @@ export class LoginComponent implements AfterViewInit {
 
             // // previousState was set in the authExpiredInterceptor before being redirected to login modal.
             // // since login is succesful, go to stored previousState and clear previousState
-            const redirect = this.stateStorageService.getUrl();
-            if (redirect) {
-                this.router.navigate([redirect]);
-            }
+
+            this.router.navigate(['']);
+
         }).catch(() => {
             this.authenticationError = true;
         });

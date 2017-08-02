@@ -5,7 +5,7 @@ import {Principal} from '../shared/index';
 import {MarkdownService} from './markdown.service';
 
 @Component({
-    selector: 'page-edit',
+    selector: 'jhi-page-edit',
     templateUrl: './page-edit.component.html',
     providers: [MarkdownService]
 })
@@ -13,6 +13,7 @@ export class PageEditComponent implements OnInit {
 
     account: Account;
     convertedText: string;
+    preview = false;
 
     constructor(private principal: Principal,
                 private eventManager: JhiEventManager,
@@ -36,6 +37,14 @@ export class PageEditComponent implements OnInit {
 
     isAuthenticated() {
         return this.principal.isAuthenticated();
+    }
+
+    isPreview() {
+        return this.preview;
+    }
+
+    togglePreview() {
+        this.preview = !this.preview
     }
 
     renderMarkdown(mdText: string) {

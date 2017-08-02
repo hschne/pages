@@ -1,20 +1,49 @@
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="form-group">
-                <label for="markdown-area">Example textarea</label>
-                <textarea class="form-control" name="markdown" id="markdown-area" rows="30"
-                          placeholder="Enter your markdown here..."
-                          (keyup)="renderMarkdown($event.target.value)"></textarea>
+<!--Full component on bootsnipp: https://bootsnipp.com/snippets/featured/html-editor-wysiwyg-interface-->
+<div class="container d-flex align-items-center">
+    <div class="row justify-content-top" style="width: 100%;">
+        <div class="col-md-12" [ngSwitch]="isPreview()">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-default" data-toggle="tooltip" title="New file">
+                            <i class="fa fa-file-o"></i>
+                        </button>
+                        <button type="button" class="btn btn-default" data-toggle="tooltip" title="Save">
+                            <i class="fa fa-save"></i>
+                        </button>
+                        <button type="button" class="btn btn-default" data-toggle="tooltip" title="Print">
+                            <i class="fa fa-print"></i>
+                        </button>
+                        <button type="button" class="btn btn-default" data-toggle="tooltip" title="Source code">
+                            <i class="fa fa-code"></i> Source
+                        </button>
+
+                    </div>
+                    <div class="btn-group pull-right">
+                        <button type="button" class="btn btn-primary " data-toggle="button"
+                                aria-pressed="false"
+                                autocomplete="off" (click)="togglePreview()">
+                            Preview
+                        </button>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <textarea *ngSwitchCase="false" class="form-control" name="markdown" id="markdown-area" rows="30"
+                              placeholder="Enter your content here..."
+                              (keyup)="renderMarkdown($event.target.value)"></textarea>
+                    <div [innerHtml]="convertedText" *ngSwitchCase="true"></div>
+                </div>
+                <div class="panel-footer">
+                    <button type="button" class="btn btn-secondary">
+                        Cancel
+                    </button>
+                    <div class="pull-right">
+                        <button type="button" class="btn btn-primary">
+                            Save
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="col-md-6">
-            <h2>
-                <span>Rendered</span>
-            </h2>
-            <div [innerHtml]="convertedText"></div>
-        </div>
     </div>
-    <br/>
 </div>
-
