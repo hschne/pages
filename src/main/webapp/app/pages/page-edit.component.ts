@@ -7,13 +7,15 @@ import {MarkdownService} from './markdown.service';
 @Component({
     selector: 'jhi-page-edit',
     templateUrl: './page-edit.component.html',
-    providers: [MarkdownService]
+    providers: [MarkdownService],
+    styleUrls: ['page.scss']
 })
 export class PageEditComponent implements OnInit {
 
     account: Account;
     convertedText: string;
     preview = false;
+    content = '';
 
     constructor(private principal: Principal,
                 private eventManager: JhiEventManager,

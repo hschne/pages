@@ -1,6 +1,7 @@
 /* ==========================================================================
 Main page styles
 ========================================================================== */
+@import "../../content/scss/variables";
 
 .hipster {
     display: inline-block;
@@ -28,3 +29,20 @@ only screen and (min-resolution: 2dppx) {
     height: 75vh;
 }
 
+#preview-panel {
+    overflow: auto;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 0.25rem;
+    padding: 0.5rem 0.75rem
+}
+
+.toggle.android {
+    border-radius: 0px;
+}
+
+.toggle.android .toggle-handle {
+    border-radius: 0px;
+}
+.toggle-handle {
+    width: 30px;
+}
