@@ -21,6 +21,7 @@ export class PageEditComponent implements OnInit {
     convertedText: string;
     preview = false;
     content = '';
+    isSaving = false;
 
     constructor(private principal: Principal,
                 private eventManager: JhiEventManager,
@@ -63,6 +64,7 @@ export class PageEditComponent implements OnInit {
     }
 
     save() {
+        this.isSaving = true;
         if (this.document.id !== undefined) {
             this.subscribeToSaveResponse(
                 this.documentService.update(this.document));
@@ -80,6 +82,7 @@ export class PageEditComponent implements OnInit {
     private onSaveSuccess(result: Document) {
         this.eventManager.broadcast({name: 'documentListModification', content: 'OK'});
         this.router.navigate(['./pages'])
+        this.isSaving = false;
     }
 
     private onSaveError(error) {
@@ -89,6 +92,7 @@ export class PageEditComponent implements OnInit {
             error.message = error.text();
         }
         this.onError(error);
+        this.isSaving = false;
     }
 
     private onError(error) {
