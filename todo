@@ -4,22 +4,28 @@
 
 - Proper Style
 - Login/Logout
-- Create/Edit Documents: Markdown input with preview tab. Syntax highlighting. Saving of page. Canceling of page. Input of name/description. 
-- Delete/Edit. Preview of first lines rendered - Like gists. 
-- Update readme. 
+- Create/Edit Documents: Markdown input with preview tab. Syntax highlighting. Saving of page. Canceling of page. Input of name/description.
+- Delete/Edit. Preview of first lines rendered - Like gists.
+- Update readme.
 - Write a blogpost
 
 ## Version 0.2
 
 - Full end to end test coverage/unit tests
 - Rewrite backend unit tests
-- Before-Navigate Handler on editing: So a user is notified that changes will be lost. 
+- Before-Navigate Handler on editing: So a user is notified that changes will be lost.
 - Improve editor: Add buttons to add markdown content - like github
 - Proper search of documents (maybe with elastithing?)
+- Syntax highlighting for editor!
+- Place default password on first login, redirect to password reset
 
 ## Version 1.0
 - Full rewrite to kotlin as well as possible
 - Remove all jhipster craft thats not needed
-- Add docker build 
+- Add docker build
 - Host... somewhere
 - Write another blogpost :P
+
+## Version 1.1
+- More deployment options, war or similar
+- Project website, documentation etc.

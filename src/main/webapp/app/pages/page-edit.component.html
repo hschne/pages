@@ -9,10 +9,10 @@
                     </h2>
                     <div class="row pt-1 pb-1 ">
                         <div class="input-group col-md-3">
-                            <input placeholder="Name" class="form-control">
+                            <input placeholder="Name" [(ngModel)]="document.name" class="form-control">
                         </div>
                         <div class="input-group col-md-9 pull-right">
-                            <input placeholder="Description" class="form-control input-md ">
+                            <input placeholder="Description" [(ngModel)]="document.description" class="form-control input-md ">
                         </div>
                     </div>
 
@@ -83,26 +83,22 @@
 
                     </div>
                 </div>
-                <div class="panel-body h-75" id="markdown">
+                <div class="panel-body h-75 pt-2" id="markdown">
                     <textarea *ngSwitchCase="false" class="form-control h-100" name="markdown-editor" id="markdown-area"
-                              (keyup)="renderMarkdown($event.target.value)" [(ngModel)]="content"></textarea>
+                              (keyup)="renderMarkdown($event.target.value)" [(ngModel)]="document.content"></textarea>
                     <div class="h-100 pt-2 markdown-body" id="preview-panel" [innerHtml]="convertedText"
                          *ngSwitchCase="true"></div>
                 </div>
                 <div class="panel-footer pt-2">
-                    <button type="button" class="btn btn-secondary">
-                        Cancel
-                    </button>
+                    <div  class="placeholder">
+                    </div>
                     <div class="pull-right">
-                        <button type="button" class="btn btn-primary">
+                        <button type="button" class="btn btn-primary" (click)="save()">
                             Save
                         </button>
                     </div>
                 </div>
-
             </div>
-            <input type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger">
-            <input type="checkbox" checked data-toggle="toggle" data-onstyle="warning" data-offstyle="info">
         </div>
     </div>
 </div>
