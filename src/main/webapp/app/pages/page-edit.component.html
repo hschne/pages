@@ -6,7 +6,7 @@
                 <div class="panel panel-primary h-100" id="main-panel">
                     <div class="panel-heading">
                         <h2>
-                            New Page
+                            {{title}}
                         </h2>
                         <jhi-alert-error></jhi-alert-error>
                         <div class="row pt-1 pb-1 ">
@@ -109,8 +109,9 @@
                              *ngSwitchCase="true"></div>
                     </div>
                     <div class="panel-footer pt-2">
-                        <div class="placeholder">
-                        </div>
+                        <button type="button" class="btn btn-secondary" (click)="cancel()">
+                            Cancel
+                        </button>
                         <div class="pull-right">
                             <button type="button" type="submit" class="btn btn-primary"
                                     [disabled]="editForm.form.invalid || isSaving">Save

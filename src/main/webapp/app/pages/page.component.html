@@ -1,10 +1,10 @@
 <div>
     <h2>
-        <span>Documents</span>
-        <button class="btn btn-primary float-right create-document" [routerLink]="['/', { outlets: { popup: ['document-new'] } }]">
+        <span>Your Pages</span>
+        <button class="btn btn-primary float-right create-document" [routerLink]="['/edit']">
             <span class="fa fa-plus"></span>
             <span >
-            Create new Document
+            Create new Page
             </span>
         </button>
     </h2>
@@ -26,7 +26,6 @@
             </thead>
             <tbody>
             <tr *ngFor="let document of documents ;trackBy: trackId">
-                <td><a [routerLink]="['../document', document.id ]">{{document.id}}</a></td>
                 <td>{{document.name}}</td>
                 <td>{{document.description}}</td>
                 <td>{{document.content}}</td>
@@ -36,14 +35,13 @@
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"
-                                [routerLink]="['../document', document.id ]"
+                                [routerLink]="['view', document.id ]"
                                 class="btn btn-info btn-sm">
                             <span class="fa fa-eye"></span>
                             <span class="hidden-md-down">View</span>
                         </button>
                         <button type="submit"
-                                [routerLink]="['/', { outlets: { popup: 'document/'+ document.id + '/edit'} }]"
-                                replaceUrl="true"
+                                [routerLink]="['/edit', document.id ]"
                                 class="btn btn-primary btn-sm">
                             <span class="fa fa-pencil"></span>
                             <span class="hidden-md-down">Edit</span>

@@ -7,11 +7,20 @@ import {PageComponent} from './page.component';
 export const page_routes: Routes = [
         {
             path: '',
-            redirectTo: '/edit',
+            redirectTo: '/pages',
             pathMatch: 'full'
         },
         {
             path: 'edit',
+            component: PageEditComponent,
+            data: {
+                authorities: ['ROLE_USER'],
+                pageTitle: 'New Page'
+            },
+            canActivate: [UserRouteAccessService]
+        },
+        {
+            path: 'edit/:id',
             component: PageEditComponent,
             data: {
                 authorities: ['ROLE_USER'],
@@ -28,5 +37,15 @@ export const page_routes: Routes = [
             },
             canActivate: [UserRouteAccessService]
         },
+        {
+            path: 'view/:id',
+            component: PageEditComponent,
+            data: {
+                authorities: ['ROLE_USER'],
+                pageTitle: 'Page Detail'
+            },
+            canActivate: [UserRouteAccessService]
+        },
+
     ]
 ;
