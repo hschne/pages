@@ -12,8 +12,6 @@ html, body {
     height: 100%;
 }
 
-
-
 /* ==========================================================================
 Browser Upgrade Prompt
 ========================================================================== */
@@ -171,13 +169,6 @@ entity detail page css
     }
 }
 
- .modal-dialog {
-        position: absolute;
-        top: 33%;
-        left: 50%;
-        transform: translate(-50%, -50%) !important;
-    }
-
 @media screen and (min-width: 768px) {
     .row.jh-entity-details > {
         dt {
@@ -209,3 +200,10 @@ ui bootstrap tweaks
 }
 
 /* jhipster-needle-scss-add-main JHipster will add new css style */
+
+.modal-dialog {
+    position: absolute;
+    top: 33%;
+    left: 50%;
+    transform: translate(-50%, -50%) !important;
+}

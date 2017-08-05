@@ -13,7 +13,7 @@ import {Document} from './document.model';
     selector: 'jhi-page-edit',
     templateUrl: './page-edit.component.html',
     providers: [MarkdownService],
-    styleUrls: ['page.scss']
+    styleUrls: ['page-edit.scss']
 })
 export class PageEditComponent implements OnInit {
 

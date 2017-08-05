@@ -10,7 +10,10 @@ import {ResponseWrapper} from '../shared/model/response-wrapper.model';
 
 @Component({
     selector: 'jhi-document',
-    templateUrl: './page.component.html'
+    templateUrl: './page.component.html',
+    styleUrls: [
+        'page.scss'
+    ]
 })
 export class PageComponent implements OnInit, OnDestroy {
 documents: Document[];
