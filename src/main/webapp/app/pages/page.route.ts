@@ -3,6 +3,7 @@ import {Routes} from '@angular/router';
 import {UserRouteAccessService} from '../shared';
 import {PageEditComponent} from './page-edit.component';
 import {PageComponent} from './page.component';
+import {PageViewComponent} from './page-view.component';
 
 export const page_routes: Routes = [
         {
@@ -39,7 +40,7 @@ export const page_routes: Routes = [
         },
         {
             path: 'view/:id',
-            component: PageEditComponent,
+            component: PageViewComponent,
             data: {
                 authorities: ['ROLE_USER'],
                 pageTitle: 'Page Detail'

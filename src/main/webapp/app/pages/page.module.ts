@@ -5,11 +5,13 @@ import {
     DocumentService,
     page_routes,
     PageComponent,
-    PageEditComponent
+    PageEditComponent,
+    PageViewComponent
 } from './'
 
 import {PagesSharedModule} from '../shared';
 import {MarkdownService} from './markdown.service';
+import {PageItemComponent} from './page-item.component';
 
 @NgModule({
     imports: [
@@ -18,7 +20,9 @@ import {MarkdownService} from './markdown.service';
     ],
     declarations: [
         PageEditComponent,
-        PageComponent
+        PageViewComponent,
+        PageComponent,
+        PageItemComponent
     ],
     entryComponents: [],
     providers: [
