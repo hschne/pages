@@ -1,5 +1,5 @@
-<div class="card">
-    <div class="card-header">
+<div class="card mt-2 mb-2 rounded">
+    <div class="card-header page-item-header" (click)="collapse()">
         <div class="row">
             <div class="col-md-6"><h2 class="card-title">{{document.name}}</h2></div>
             <div class="col-md-6 text-right">
@@ -29,7 +29,7 @@
         <div class="text-left">{{document.description}}</div>
     </div>
 
-    <div class="card-block">
+    <div class="card-block page-item-container" [ngbCollapse]="isCollapsed">
         <div class="markdown-body" [innerHtml]="convertedText"></div>
     </div>
 </div>

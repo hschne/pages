@@ -11,7 +11,7 @@ import {
 
 import {PagesSharedModule} from '../shared';
 import {MarkdownService} from './markdown.service';
-import {PageItemComponent} from './page-item.component';
+import {PageItemComponent} from './page-list-item.component';
 
 @NgModule({
     imports: [

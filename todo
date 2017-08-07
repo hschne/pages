@@ -3,11 +3,12 @@
 ## Version 0.1
 
 - Proper Style
-- Login/Logout
-- Create/Edit Documents: Markdown input with preview tab. Syntax highlighting. Saving of page. Validation. Input of name/description.
+- Login/Logout - CHECK
+- Create/Edit Documents: Markdown input with preview tab. Saving of page. Validation. Input of name/description. - CHECK
 - Delete/Edit. Preview of first lines rendered - Like gists.
 - Update readme.
 - Write a blogpost
+- check profile (production!), and set version
 
 ## Version 0.2
 
@@ -17,13 +18,14 @@
 - Improve editor: Add buttons to add markdown content - like github
 - Proper search of documents (maybe with elastithing?)
 - Syntax highlighting for editor!
-- Place default password on first login, redirect to password reset
+- Place default password on first login, redirect to password reset on first login
+- Screen for document lsit in case there are not entries yet (You have no pages, yet, want to create some?)
 
 ## Version 1.0
 - Full rewrite to kotlin as well as possible
-- Remove all jhipster craft thats not needed
+- Remove all jhipster stuff thats not needed
 - Add docker build
-- Host... somewhere
+- Host... somewhere (AWS?)
 - Write another blogpost :P
 
 ## Version 1.1

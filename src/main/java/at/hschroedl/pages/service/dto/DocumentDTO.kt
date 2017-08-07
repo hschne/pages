@@ -12,7 +12,7 @@ data class DocumentDTO(
     @Size(min = 1, max = 50)
     var name: String,
 
-    @Size(max = 100)
+    @Size(max = 500)
     var description: String,
 
     @Size(min = 1)

@@ -18,7 +18,7 @@ data class Document(
     @NotNull
     var name: String,
 
-    @Size(max = 100)
+    @Size(max = 500)
     var description: String,
 
     @Size(min = 1)
