@@ -5,7 +5,8 @@
 - Proper Style
 - Login/Logout - CHECK
 - Create/Edit Documents: Markdown input with preview tab. Saving of page. Validation. Input of name/description. - CHECK
-- Delete/Edit. Preview of first lines rendered - Like gists.
+- Delete/Edit. Preview of first lines rendered - Like gists. - CHECK
+- Enable delete button on view page (navigatino doesn't work?)
 - Update readme.
 - Write a blogpost
 - check profile (production!), and set version

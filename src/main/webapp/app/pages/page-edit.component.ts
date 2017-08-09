@@ -18,7 +18,7 @@ import {Document} from './document.model';
 export class PageEditComponent implements OnInit {
 
     routeSub: any;
-    document: Document;
+    document = new Document();
     convertedText: string;
     preview = false;
     content = '';
@@ -57,6 +57,9 @@ export class PageEditComponent implements OnInit {
     }
 
     togglePreview() {
+        if (this.convertedText === undefined) {
+            this.renderMarkdown(this.document.content)
+        }
         this.preview = !this.preview
     }
 

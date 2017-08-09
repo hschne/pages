@@ -100,7 +100,6 @@
                     </div>
                     <div class="panel-body h-75 pt-2" id="markdown">
                         <textarea name="content" *ngSwitchCase="false" class="form-control h-100"
-                                  name="markdown-editor"
                                   id="markdown-area" required
                                   (keyup)="renderMarkdown($event.target.value)"
                                   [(ngModel)]="document.content"></textarea>
