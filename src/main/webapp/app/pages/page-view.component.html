@@ -11,10 +11,10 @@
                             <span class="fa fa-pencil"></span>
                             <span class="hidden-md-down"></span>
                         </button>
-                        <button   type="submit"
-                                [routerLink]="['/', { outlets: { popup: 'document/'+ document.id + '/delete'} }]"
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'delete/'+ document.id} }]"
                                 replaceUrl="true"
-                                class="btn btn-danger btn-m disabled">
+                                class="btn btn-danger btn-m">
                             <span class="fa fa-remove"></span>
                             <span class="hidden-md-down"></span>
 

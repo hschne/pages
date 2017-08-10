@@ -17,9 +17,9 @@
                         <span class="hidden-md-down"></span>
                     </button>
                     <button type="submit"
-                            [routerLink]="['/', { outlets: { popup: 'document/'+ document.id + '/delete'} }]"
+                            [routerLink]="['/', { outlets: { popup: 'delete/'+ document.id } }]"
                             replaceUrl="true"
-                            class="btn btn-danger btn-m">
+                            class="btn btn-danger  btn-m" aria-pressed="false">
                         <span class="fa fa-remove"></span>
                         <span class="hidden-md-down"></span>
                     </button>

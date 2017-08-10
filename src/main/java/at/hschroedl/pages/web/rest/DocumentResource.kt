@@ -72,7 +72,7 @@ class DocumentResource(val documentService: DocumentService, var userService: Us
     @DeleteMapping("/document/{id}")
     @Timed
     fun deleteDocument(@PathVariable id: Long?): ResponseEntity<Void> {
-        log.debug("REST request to delete documen with idt {}", id)
+        log.debug("REST request to delete document with idt {}", id)
         val currentUser: User = userService.userWithAuthorities ?: return ResponseEntity(
             HttpStatus.INTERNAL_SERVER_ERROR)
         val existingDocument = documentService.findOne(id) ?: return ResponseEntity(
@@ -85,7 +85,7 @@ class DocumentResource(val documentService: DocumentService, var userService: Us
         }
         documentService.deleteDocument(id)
         return ResponseEntity.ok().headers(
-            HeaderUtil.createAlert("A document is deleted with identifier " + id,
+            HeaderUtil.createAlert("Deleted "+ existingDocument.name,
                 id.toString())).build()
     }
 

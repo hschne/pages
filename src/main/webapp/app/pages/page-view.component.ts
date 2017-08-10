@@ -3,8 +3,6 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {MarkdownService} from './markdown.service';
 import {DocumentService} from './document.service';
 import {Document} from './document.model';
-import {Subscription} from 'rxjs';
-import {JhiEventManager} from 'ng-jhipster';
 
 @Component({
     selector: 'page-view',
@@ -17,13 +15,10 @@ export class PageViewComponent implements OnInit {
     routeSub: any;
     document: Document = new Document();
     convertedText: string;
-    eventSubscriber: Subscription;
 
     constructor(private md: MarkdownService,
                 private documentService: DocumentService,
-                private route: ActivatedRoute,
-                private eventManager: JhiEventManager,
-                private router: Router) {
+                private route: ActivatedRoute) {
     }
 
     ngOnInit(): void {
@@ -35,15 +30,5 @@ export class PageViewComponent implements OnInit {
                 });
             }
         });
-        this.registerChangeInDocuments();
     }
-
-    registerChangeInDocuments() {
-        this.eventSubscriber = this.eventManager.subscribe('documentListModification', (response) => this.nav());
-    }
-
-    nav() {
-        this.router.navigate(['/pages']);
-    }
-
 }

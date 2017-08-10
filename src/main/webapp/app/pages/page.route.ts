@@ -4,6 +4,7 @@ import {UserRouteAccessService} from '../shared';
 import {PageEditComponent} from './page-edit.component';
 import {PageComponent} from './page.component';
 import {PageViewComponent} from './page-view.component';
+import {PageDeletePopupComponent} from './popup/page-delete-dialog.component';
 
 export const page_routes: Routes = [
         {
@@ -47,6 +48,16 @@ export const page_routes: Routes = [
             },
             canActivate: [UserRouteAccessService]
         },
+        {
+            path: 'delete/:id',
+            component: PageDeletePopupComponent,
+            data: {
+                authorities: ['ROLE_USER'],
+                pageTitle: 'Documents'
+            },
+            canActivate: [UserRouteAccessService],
+            outlet: 'popup'
+        }
 
     ]
 ;

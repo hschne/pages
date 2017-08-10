@@ -33,3 +33,4 @@
 - More deployment options, war or similar
 - Project website, documentation etc.
 - Build the thing with travis and add those stickers.
+- Improve "Deleted message" with undo option and make it less invasive.

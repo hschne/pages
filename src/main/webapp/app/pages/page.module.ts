@@ -1,17 +1,13 @@
 import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 import {RouterModule} from '@angular/router';
 
-import {
-    DocumentService,
-    page_routes,
-    PageComponent,
-    PageEditComponent,
-    PageViewComponent
-} from './'
+import {DocumentService, page_routes, PageComponent, PageEditComponent, PageViewComponent} from './'
 
 import {PagesSharedModule} from '../shared';
 import {MarkdownService} from './markdown.service';
 import {PageItemComponent} from './page-list-item.component';
+import {PageDeleteDialogComponent, PageDeletePopupComponent} from './popup/page-delete-dialog.component';
+import {PagePopupService} from './popup/page-popup.service';
 
 @NgModule({
     imports: [
@@ -22,12 +18,20 @@ import {PageItemComponent} from './page-list-item.component';
         PageEditComponent,
         PageViewComponent,
         PageComponent,
-        PageItemComponent
+        PageItemComponent,
+        PageDeleteDialogComponent,
+        PageDeletePopupComponent
+
     ],
-    entryComponents: [],
+    entryComponents: [
+        PageComponent,
+        PageDeleteDialogComponent,
+        PageDeletePopupComponent,
+    ],
     providers: [
         DocumentService,
-        MarkdownService
+        MarkdownService,
+        PagePopupService
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
