@@ -7,21 +7,21 @@ import { Observable } from 'rxjs/Rx';
 import { JhiDateUtils, JhiDataUtils, JhiEventManager } from 'ng-jhipster';
 import { PagesTestModule } from '../../../test.module';
 import { MockActivatedRoute } from '../../../helpers/mock-route.service';
-import { DocumentDetailComponent } from '../../../../../../main/webapp/app/entities/document/document-detail.component';
-import { DocumentService } from '../../../../../../main/webapp/app/entities/document/document.service';
-import { Document } from '../../../../../../main/webapp/app/entities/document/document.model';
+import {PageService} from '../../../../../../main/webapp/app/pages/page.service';
+import {PageViewComponent} from '../../../../../../main/webapp/app/pages/page-view.component';
+import {Page} from '../../../../../../main/webapp/app/pages/page.model';
 
 describe('Component Tests', () => {
 
-    describe('Document Management Detail Component', () => {
-        let comp: DocumentDetailComponent;
-        let fixture: ComponentFixture<DocumentDetailComponent>;
-        let service: DocumentService;
+    describe('Page Management Detail Component', () => {
+        let comp: PageViewComponent;
+        let fixture: ComponentFixture<PageViewComponent>;
+        let service: PageService;
 
         beforeEach(async(() => {
             TestBed.configureTestingModule({
                 imports: [PagesTestModule],
-                declarations: [DocumentDetailComponent],
+                declarations: [PageViewComponent],
                 providers: [
                     JhiDateUtils,
                     JhiDataUtils,
@@ -30,31 +30,31 @@ describe('Component Tests', () => {
                         provide: ActivatedRoute,
                         useValue: new MockActivatedRoute({id: 123})
                     },
-                    DocumentService,
+                    PageService,
                     JhiEventManager
                 ]
-            }).overrideTemplate(DocumentDetailComponent, '')
+            }).overrideTemplate(PageViewComponent, '')
             .compileComponents();
         }));
 
         beforeEach(() => {
-            fixture = TestBed.createComponent(DocumentDetailComponent);
+            fixture = TestBed.createComponent(PageViewComponent);
             comp = fixture.componentInstance;
-            service = fixture.debugElement.injector.get(DocumentService);
+            service = fixture.debugElement.injector.get(PageService);
         });
 
         describe('OnInit', () => {
             it('Should call load all on init', () => {
             // GIVEN
 
-            spyOn(service, 'find').and.returnValue(Observable.of(new Document(10)));
+            spyOn(service, 'find').and.returnValue(Observable.of(new Page(10)));
 
             // WHEN
             comp.ngOnInit();
 
             // THEN
             expect(service.find).toHaveBeenCalledWith(123);
-            expect(comp.document).toEqual(jasmine.objectContaining({id: 10}));
+            expect(comp.page).toEqual(jasmine.objectContaining({id: 10}));
             });
         });
     });

@@ -7,7 +7,6 @@ import { Ng2Webstorage } from 'ng2-webstorage';
 import { PagesSharedModule, UserRouteAccessService } from './shared';
 import { PagesAdminModule } from './admin/admin.module';
 import { PagesAccountModule } from './account/account.module';
-import { PagesEntityModule } from './entities/entity.module';
 
 import { customHttpProvider } from './blocks/interceptor/http.provider';
 import { PaginationConfig } from './blocks/config/uib-pagination.config';
@@ -35,7 +34,6 @@ import {PagesMainModule} from './pages/page.module';
         PagesMainModule,
         PagesAdminModule,
         PagesAccountModule,
-        PagesEntityModule,
         // jhipster-needle-angular-add-module JHipster will add new module here
     ],
     declarations: [

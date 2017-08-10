@@ -1,11 +1,11 @@
 package at.hschroedl.pages.service.dto
 
-import at.hschroedl.pages.domain.Document
+import at.hschroedl.pages.domain.Page
 import org.hibernate.validator.constraints.NotBlank
 import java.time.Instant
 import javax.validation.constraints.Size
 
-data class DocumentDTO(
+data class PageDTO(
     var id: Long? = null,
 
     @NotBlank
@@ -26,12 +26,12 @@ data class DocumentDTO(
 
     constructor() : this(null, "", "", "", Instant.now())
 
-    constructor(document: Document) : this(document.id, document.name, document.description, document.content,
-        document.createdDate)
+    constructor(page: Page) : this(page.id, page.name, page.description, page.content,
+        page.createdDate)
 
     override fun toString(): String {
         val shortContent = content.substring(0, Math.min(content.length, 30))
-        return "DocumentDTO(name='$name', description='$description', content='$shortContent...', createdDate=$createdDate)"
+        return "PageDTO(name='$name', description='$description', content='$shortContent...', createdDate=$createdDate)"
     }
 
 }

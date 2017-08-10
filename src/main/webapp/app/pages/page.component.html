@@ -1,7 +1,7 @@
 <div class="container">
     <h2>
         <span>Your Pages</span>
-        <button class="btn btn-primary float-right create-document" [routerLink]="['/edit']">
+        <button class="btn btn-primary float-right" [routerLink]="['/edit']">
             <span class="fa fa-plus"></span>
             <span>
             Create new Page
@@ -12,10 +12,10 @@
     <div class="row">
     </div>
     <br/>
-    <div class="" *ngIf="documents">
+    <div class="" *ngIf="pages">
         <ul class="list-unstyled">
-            <li class="document-item" *ngFor="let document of documents ;trackBy: trackId">
-                <page-list-item [document]="document"></page-list-item>
+            <li class="page-item" *ngFor="let page of pages ;trackBy: trackId">
+                <page-list-item [page]="page"></page-list-item>
             </li>
         </ul>
     </div>

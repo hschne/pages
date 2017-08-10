@@ -2,17 +2,17 @@
     <div class="card">
         <div class="card-header">
             <div class="row">
-                <div class="col-md-6"><h2 class="card-title">{{document.name}}</h2></div>
+                <div class="col-md-6"><h2 class="card-title">{{page.name}}</h2></div>
                 <div class="col-md-6 text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"
-                                [routerLink]="['/edit', document.id ]"
+                                [routerLink]="['/edit', page.id ]"
                                 class="btn btn-primary btn-m">
                             <span class="fa fa-pencil"></span>
                             <span class="hidden-md-down"></span>
                         </button>
                         <button type="submit"
-                                [routerLink]="['/', { outlets: { popup: 'delete/'+ document.id} }]"
+                                [routerLink]="['/', { outlets: { popup: 'delete/'+ page.id} }]"
                                 replaceUrl="true"
                                 class="btn btn-danger btn-m">
                             <span class="fa fa-remove"></span>
@@ -23,7 +23,7 @@
                 </div>
             </div>
 
-            <div class="card-text"><span>{{document.description}}</span></div>
+            <div class="card-text"><span>{{page.description}}</span></div>
         </div>
 
 

@@ -1,7 +1,7 @@
 import {BaseEntity} from '../shared/model/base-entity';
 import {User} from '../shared/user/user.model';
 
-export class Document implements BaseEntity {
+export class Page implements BaseEntity {
     constructor(
         public id?: number,
         public name?: string,

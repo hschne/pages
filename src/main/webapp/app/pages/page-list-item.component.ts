@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {MarkdownService} from './markdown.service';
-import {Document} from './document.model';
+import {Page} from './page.model';
 import {
   trigger,
   state,
@@ -30,7 +30,7 @@ import {
     ]
 })
 export class PageItemComponent implements OnInit {
-    @Input() public document: Document;
+    @Input() public page: Page;
     convertedText = '';
     isCollapsed = false;
 
@@ -39,7 +39,7 @@ export class PageItemComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.convertedText = this.md.convert(this.document.content);
+        this.convertedText = this.md.convert(this.page.content);
     }
 
     collapse() {

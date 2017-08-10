@@ -4,5 +4,5 @@ export * from './page.component';
 export * from './page-list-item.component';
 export * from './page-edit.component';
 export * from './page-view.component';
-export * from './document.model';
-export * from './document.service';
+export * from './page.model';
+export * from './page.service';

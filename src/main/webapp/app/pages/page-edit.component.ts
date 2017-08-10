@@ -6,8 +6,8 @@ import {Observable} from 'rxjs/Rx';
 import {JhiAlertService, JhiEventManager} from 'ng-jhipster';
 import {Principal} from '../shared/index';
 import {MarkdownService} from './markdown.service';
-import {DocumentService} from './document.service';
-import {Document} from './document.model';
+import {PageService} from './page.service';
+import {Page} from './page.model';
 
 @Component({
     selector: 'jhi-page-edit',
@@ -18,7 +18,7 @@ import {Document} from './document.model';
 export class PageEditComponent implements OnInit {
 
     routeSub: any;
-    document = new Document();
+    page = new Page();
     convertedText: string;
     preview = false;
     content = '';
@@ -29,7 +29,7 @@ export class PageEditComponent implements OnInit {
                 private eventManager: JhiEventManager,
                 private md: MarkdownService,
                 private router: Router,
-                private documentService: DocumentService,
+                private documentService: PageService,
                 private alertService: JhiAlertService,
                 private route: ActivatedRoute,
                 private location: Location) {
@@ -38,12 +38,12 @@ export class PageEditComponent implements OnInit {
     ngOnInit() {
         this.routeSub = this.route.params.subscribe((params) => {
             if (params['id']) {
-                this.documentService.find(params['id']).subscribe((document) => {
-                    this.document = document;
+                this.documentService.find(params['id']).subscribe((page) => {
+                    this.page = page;
                     this.title = 'Edit Page';
                 });
             } else {
-                this.document = new Document();
+                this.page = new Page();
             }
         });
     }
@@ -58,7 +58,7 @@ export class PageEditComponent implements OnInit {
 
     togglePreview() {
         if (this.convertedText === undefined) {
-            this.renderMarkdown(this.document.content)
+            this.renderMarkdown(this.page.content)
         }
         this.preview = !this.preview
     }
@@ -69,12 +69,12 @@ export class PageEditComponent implements OnInit {
 
     save() {
         this.isSaving = true;
-        if (this.document.id !== undefined) {
+        if (this.page.id !== undefined) {
             this.subscribeToSaveResponse(
-                this.documentService.update(this.document));
+                this.documentService.update(this.page));
         } else {
             this.subscribeToSaveResponse(
-                this.documentService.create(this.document));
+                this.documentService.create(this.page));
         }
     }
 
@@ -82,12 +82,12 @@ export class PageEditComponent implements OnInit {
         this.location.back();
     }
 
-    private subscribeToSaveResponse(result: Observable<Document>) {
-        result.subscribe((res: Document) =>
+    private subscribeToSaveResponse(result: Observable<Page>) {
+        result.subscribe((res: Page) =>
             this.onSaveSuccess(res), (res: Response) => this.onSaveError(res));
     }
 
-    private onSaveSuccess(result: Document) {
+    private onSaveSuccess(result: Page) {
         this.eventManager.broadcast({name: 'documentListModification', content: 'OK'});
         this.router.navigate(['./pages'])
         this.isSaving = false;

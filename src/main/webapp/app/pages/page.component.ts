@@ -2,25 +2,25 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs/Rx';
 import { JhiEventManager, JhiParseLinks, JhiPaginationUtil, JhiAlertService, JhiDataUtils } from 'ng-jhipster';
 
-import { Document } from './document.model';
-import { DocumentService } from './document.service';
+import { Page } from './page.model';
+import { PageService } from './page.service';
 import {Principal} from '../shared/auth/principal.service';
 import {ResponseWrapper} from '../shared/model/response-wrapper.model';
 
 @Component({
-    selector: 'jhi-document',
+    selector: 'jhi-page',
     templateUrl: './page.component.html',
     styleUrls: [
         'page.scss'
     ]
 })
 export class PageComponent implements OnInit, OnDestroy {
-documents: Document[];
+    pages: Page[];
     currentAccount: any;
     eventSubscriber: Subscription;
 
     constructor(
-        private documentService: DocumentService,
+        private documentService: PageService,
         private alertService: JhiAlertService,
         private dataUtils: JhiDataUtils,
         private eventManager: JhiEventManager,
@@ -31,7 +31,7 @@ documents: Document[];
     loadAll() {
         this.documentService.query().subscribe(
             (res: ResponseWrapper) => {
-                this.documents = res.json;
+                this.pages = res.json;
             },
             (res: ResponseWrapper) => this.onError(res.json)
         );
@@ -48,7 +48,7 @@ documents: Document[];
         this.eventManager.destroy(this.eventSubscriber);
     }
 
-    trackId(index: number, item: Document) {
+    trackId(index: number, item: Page) {
         return item.id;
     }
 

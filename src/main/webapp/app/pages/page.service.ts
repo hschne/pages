@@ -1,32 +1,34 @@
-import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
-import { Observable } from 'rxjs/Rx';
+import {Injectable} from '@angular/core';
+import {Http, Response} from '@angular/http';
+import {Observable} from 'rxjs/Rx';
 
-import { Document } from './document.model';
-import { ResponseWrapper, createRequestOption } from '../../shared';
+import {Page} from './page.model';
+import {ResponseWrapper} from '../shared/model/response-wrapper.model';
+import {createRequestOption} from '../shared/model/request-util';
 
 @Injectable()
-export class DocumentService {
+export class PageService {
 
-    private resourceUrl = 'api/document';
+    private resourceUrl = 'api/page';
 
-    constructor(private http: Http) { }
+    constructor(private http: Http) {
+    }
 
-    create(document: Document): Observable<Document> {
-        const copy = this.convert(document);
+    create(page: Page): Observable<Page> {
+        const copy = this.convert(page);
         return this.http.post(this.resourceUrl, copy).map((res: Response) => {
             return res.json();
         });
     }
 
-    update(document: Document): Observable<Document> {
-        const copy = this.convert(document);
+    update(page: Page): Observable<Page> {
+        const copy = this.convert(page);
         return this.http.put(this.resourceUrl, copy).map((res: Response) => {
             return res.json();
         });
     }
 
-    find(id: number): Observable<Document> {
+    find(id: number): Observable<Page> {
         return this.http.get(`${this.resourceUrl}/${id}`).map((res: Response) => {
             return res.json();
         });
@@ -47,8 +49,8 @@ export class DocumentService {
         return new ResponseWrapper(res.headers, jsonResponse, res.status);
     }
 
-    private convert(document: Document): Document {
-        const copy: Document = Object.assign({}, document);
+    private convert(page: Page): Page {
+        const copy: Page = Object.assign({}, page);
         return copy;
     }
 }

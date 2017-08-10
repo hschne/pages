@@ -4,9 +4,9 @@
                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
     <changeSet author="hschroedl (generated)" id="1500396378636-1">
-        <createTable tableName="document">
+        <createTable tableName="page">
             <column autoIncrement="true" name="id" type="BIGINT">
-                <constraints primaryKey="true" primaryKeyName="documentPK"/>
+                <constraints primaryKey="true" primaryKeyName="pagePK"/>
             </column>
             <column name="created_by" type="VARCHAR(50)" defaultValue="system">
                 <constraints nullable="false"/>
@@ -25,13 +25,13 @@
 
     </changeSet>
     <changeSet author="hschroedl (generated)" id="1500396378636-2">
-        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="document"
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="page"
                                  constraintName="FKivfi0t1f6ci393p1ap933yw4g" deferrable="false"
                                  initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"/>
         <loadData encoding="UTF-8"
-                  file="config/liquibase/documents.csv"
+                  file="config/liquibase/pages.csv"
                   separator=";"
-                  tableName="document">
+                  tableName="page">
             <column name="created_date" type="timestamp"/>
         </loadData>
     </changeSet>

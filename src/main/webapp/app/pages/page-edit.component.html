@@ -12,7 +12,7 @@
                         <div class="row pt-1 pb-1 ">
                             <div class="form-group col-md-3">
                                 <div class="input-group ">
-                                    <input placeholder="Name" [(ngModel)]="document.name" class="form-control"
+                                    <input placeholder="Name" [(ngModel)]="page.name" class="form-control"
                                            name="name"
                                            id="field_name" required minlength="1" maxlength="50">
                                 </div>
@@ -20,7 +20,7 @@
                             <div class="form-group col-md-9">
                                 <div class="input-group ">
                                     <input name="description" placeholder="Description"
-                                           [(ngModel)]="document.description"
+                                           [(ngModel)]="page.description"
                                            class="form-control input-md" maxlength="500">
                                 </div>
                             </div>
@@ -102,7 +102,7 @@
                         <textarea name="content" *ngSwitchCase="false" class="form-control h-100"
                                   id="markdown-area" required
                                   (keyup)="renderMarkdown($event.target.value)"
-                                  [(ngModel)]="document.content"></textarea>
+                                  [(ngModel)]="page.content"></textarea>
 
                         <div class="h-100 pt-2 markdown-body" id="preview-panel" [innerHtml]="convertedText"
                              *ngSwitchCase="true"></div>

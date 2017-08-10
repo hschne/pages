@@ -1,7 +1,7 @@
 import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 import {RouterModule} from '@angular/router';
 
-import {DocumentService, page_routes, PageComponent, PageEditComponent, PageViewComponent} from './'
+import {PageService, page_routes, PageComponent, PageEditComponent, PageViewComponent} from './'
 
 import {PagesSharedModule} from '../shared';
 import {MarkdownService} from './markdown.service';
@@ -29,7 +29,7 @@ import {PagePopupService} from './popup/page-popup.service';
         PageDeletePopupComponent,
     ],
     providers: [
-        DocumentService,
+        PageService,
         MarkdownService,
         PagePopupService
     ],

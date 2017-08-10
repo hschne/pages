@@ -4,9 +4,9 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {NgbActiveModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
 import {JhiEventManager} from 'ng-jhipster';
 
-import {Document} from '../document.model';
+import {Page} from '../page.model';
 import {PagePopupService} from './page-popup.service';
-import {DocumentService} from '../document.service';
+import {PageService} from '../page.service';
 
 @Component({
     selector: 'jhi-page-delete-dialog',
@@ -14,9 +14,9 @@ import {DocumentService} from '../document.service';
 })
 export class PageDeleteDialogComponent {
 
-    document: Document;
+    page: Page;
 
-    constructor(private documentService: DocumentService,
+    constructor(private documentService: PageService,
                 public activeModal: NgbActiveModal,
                 private eventManager: JhiEventManager,
                 private router: Router) {
@@ -30,7 +30,7 @@ export class PageDeleteDialogComponent {
         this.documentService.delete(id).subscribe((response) => {
             this.eventManager.broadcast({
                 name: 'documentListModification',
-                content: 'Deleted an document'
+                content: 'Deleted an page'
             });
             this.activeModal.dismiss(true);
         });

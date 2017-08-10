@@ -1,10 +1,10 @@
 package at.hschroedl.pages.web.rest
 
-import at.hschroedl.pages.domain.Document
+import at.hschroedl.pages.domain.Page
 import at.hschroedl.pages.domain.User
-import at.hschroedl.pages.service.DocumentService
+import at.hschroedl.pages.service.PageService
 import at.hschroedl.pages.service.UserService
-import at.hschroedl.pages.service.dto.DocumentDTO
+import at.hschroedl.pages.service.dto.PageDTO
 import at.hschroedl.pages.web.rest.util.HeaderUtil
 import com.codahale.metrics.annotation.Timed
 import io.github.jhipster.web.util.ResponseUtil
@@ -18,83 +18,83 @@ import javax.validation.Valid
 
 @RestController
 @RequestMapping("/api")
-class DocumentResource(val documentService: DocumentService, var userService: UserService) {
+class PageResource(val pageService: PageService, var userService: UserService) {
 
-    private val ENTITY_NAME = "documentManagement"
+    private val ENTITY_NAME = "pageManagement"
 
-    private val log = LoggerFactory.getLogger(DocumentResource::class.java)
+    private val log = LoggerFactory.getLogger(PageResource::class.java)
 
-    @GetMapping("/document")
+    @GetMapping("/page")
     @Timed
-    fun getDocuments(): ResponseEntity<List<DocumentDTO>> {
-        log.debug("Rest request to get documents")
+    fun getDocuments(): ResponseEntity<List<PageDTO>> {
+        log.debug("Rest request to get pages")
         val currentUser: User = userService.userWithAuthorities ?: return ResponseEntity(
             HttpStatus.INTERNAL_SERVER_ERROR)
-        return ResponseEntity.ok(documentService.findByUser(currentUser).map { DocumentDTO(it) })
+        return ResponseEntity.ok(pageService.findByUser(currentUser).map { PageDTO(it) })
     }
 
-    @PostMapping("/document")
+    @PostMapping("/page")
     @Timed
-    fun createDocument(@Valid @RequestBody documentDTO: DocumentDTO): ResponseEntity<*> {
-        log.debug("REST request to create document {}", documentDTO)
+    fun createDocument(@Valid @RequestBody pageDTO: PageDTO): ResponseEntity<*> {
+        log.debug("REST request to create page {}", pageDTO)
         val currentUser: User? = userService.userWithAuthorities ?: return ResponseEntity<String>(
             HttpStatus.INTERNAL_SERVER_ERROR)
-        if (documentDTO.id != null) {
+        if (pageDTO.id != null) {
             val result = ResponseEntity.badRequest()
                 .headers(
-                    HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new document cannot already have an ID"))
+                    HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new page cannot already have an ID"))
                 .body<Any>(null)
             return result
         }
-        val newDocument = documentService.createWith(currentUser!!, documentDTO)
-        return ResponseEntity.created(URI("/api/documents/" + newDocument.id))
+        val newDocument = pageService.createWith(currentUser!!, pageDTO)
+        return ResponseEntity.created(URI("/api/pages/" + newDocument.id))
             .headers(
-                HeaderUtil.createAlert("A document is created with name " + newDocument.name, newDocument.name))
-            .body<Document>(newDocument)
+                HeaderUtil.createAlert("A page is created with name " + newDocument.name, newDocument.name))
+            .body<Page>(newDocument)
     }
 
-    @PutMapping("/document")
+    @PutMapping("/page")
     @Timed
-    fun updateDocument(@Valid @RequestBody documentDTO: DocumentDTO): ResponseEntity<DocumentDTO> {
-        log.debug("REST request to update document {}", documentDTO)
+    fun updateDocument(@Valid @RequestBody pageDTO: PageDTO): ResponseEntity<PageDTO> {
+        log.debug("REST request to update page {}", pageDTO)
         val currentUser: User? = userService.userWithAuthorities ?: return ResponseEntity(
             HttpStatus.INTERNAL_SERVER_ERROR)
-        val existingDocument = documentService.findOne(documentDTO.id) ?: return ResponseEntity(
+        val existingDocument = pageService.findOne(pageDTO.id) ?: return ResponseEntity(
             HttpStatus.NOT_FOUND)
         if (existingDocument.userId != currentUser!!.id) {
             return ResponseEntity.badRequest().headers(
                 HeaderUtil.createFailureAlert(ENTITY_NAME, "invaliduser",
-                    "User not authorized to modify this document")).body<DocumentDTO>(null)
+                    "User not authorized to modify this page")).body<PageDTO>(null)
         }
-        return ResponseEntity.ok(documentService.update(documentDTO))
+        return ResponseEntity.ok(pageService.update(pageDTO))
     }
 
-    @DeleteMapping("/document/{id}")
+    @DeleteMapping("/page/{id}")
     @Timed
     fun deleteDocument(@PathVariable id: Long?): ResponseEntity<Void> {
-        log.debug("REST request to delete document with idt {}", id)
+        log.debug("REST request to delete page with idt {}", id)
         val currentUser: User = userService.userWithAuthorities ?: return ResponseEntity(
             HttpStatus.INTERNAL_SERVER_ERROR)
-        val existingDocument = documentService.findOne(id) ?: return ResponseEntity(
+        val existingDocument = pageService.findOne(id) ?: return ResponseEntity(
             HttpStatus.NOT_FOUND)
         if (existingDocument.userId != currentUser.id) {
             var result = ResponseEntity.badRequest().headers(
                 HeaderUtil.createFailureAlert(ENTITY_NAME, "invaliduser",
-                    "User not authorized to delete this document")).body<Void>(null)
+                    "User not authorized to delete this page")).body<Void>(null)
             return result
         }
-        documentService.deleteDocument(id)
+        pageService.deleteDocument(id)
         return ResponseEntity.ok().headers(
             HeaderUtil.createAlert("Deleted "+ existingDocument.name,
                 id.toString())).build()
     }
 
 
-    @GetMapping("/document/{id}")
+    @GetMapping("/page/{id}")
     @Timed
-    fun getSample(@PathVariable id: Long?): ResponseEntity<DocumentDTO> {
+    fun getSample(@PathVariable id: Long?): ResponseEntity<PageDTO> {
         log.debug("REST request to get Sample : {}", id)
-        val documentDto = documentService.findOne(id)
+        val documentDto = pageService.findOne(id)
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(documentDto))
     }
 

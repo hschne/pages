@@ -7,8 +7,8 @@ import javax.validation.constraints.NotNull
 import javax.validation.constraints.Size
 
 @Entity
-@Table(name = "document")
-data class Document(
+@Table(name = "page")
+data class Page(
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
     @SequenceGenerator(name = "sequenceGenerator")
@@ -45,12 +45,12 @@ data class Document(
             return false
         }
 
-        val document = other as Document?
+        val document = other as Page?
         return !(document!!.id == null || id == null) && id == document.id
     }
 
     override fun toString(): String {
-        return "Document(name='$name', description='$description', content='$content')"
+        return "Page(name='$name', description='$description', content='$content')"
     }
 
 }

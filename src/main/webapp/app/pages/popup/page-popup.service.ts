@@ -1,8 +1,8 @@
 import { Injectable, Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { Document } from '../document.model';
-import { DocumentService } from '../document.service';
+import { Page } from '../page.model';
+import { PageService } from '../page.service';
 
 @Injectable()
 export class PagePopupService {
@@ -10,7 +10,7 @@ export class PagePopupService {
     constructor(
         private modalService: NgbModal,
         private router: Router,
-        private documentService: DocumentService
+        private documentService: PageService
 
     ) {}
 
@@ -21,17 +21,17 @@ export class PagePopupService {
         this.isOpen = true;
 
         if (id) {
-            this.documentService.find(id).subscribe((document) => {
-                this.documentModalRef(component, document);
+            this.documentService.find(id).subscribe((page) => {
+                this.documentModalRef(component, page);
             });
         } else {
-            return this.documentModalRef(component, new Document());
+            return this.documentModalRef(component, new Page());
         }
     }
 
-    documentModalRef(component: Component, document: Document): NgbModalRef {
+    documentModalRef(component: Component, page: Page): NgbModalRef {
         const modalRef = this.modalService.open(component, { size: 'lg', backdrop: 'static'});
-        modalRef.componentInstance.document = document;
+        modalRef.componentInstance.page = page;
         modalRef.result.then((result) => {
             this.router.navigate([{ outlets: { popup: null }}], { replaceUrl: true });
             this.isOpen = false;
