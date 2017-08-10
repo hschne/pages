@@ -62,9 +62,7 @@ Generic styles
     opacity: 1;
 }
 
-.footer {
-    border-top: 1px solid rgba(0, 0, 0, .125);
-}
+
 
 /* ==========================================================================
 make sure browsers use the pointer cursor for anchors, even with no href
@@ -206,4 +204,71 @@ ui bootstrap tweaks
     top: 33%;
     left: 50%;
     transform: translate(-50%, -50%) !important;
+}
+
+// Journal 4.0.0
+// Bootswatch
+
+
+$web-font-path: "https://fonts.googleapis.com/css?family=News+Cycle:400,700" !default;
+@import url($web-font-path);
+
+// Navbar ======================================================================
+
+.bg-primary {
+  background-color: #fff !important;
+  border: 1px solid $gray-lightest;
+}
+
+.bg-inverse {
+  background-color: #000 !important;
+}
+
+.navbar {
+  font-size: 18px;
+  font-family: $headings-font-family;
+  font-weight: $headings-font-weight;
+
+  &-nav .nav-item + .nav-item {
+    margin-left: 2rem;
+  }
+}
+
+.navbar-brand {
+  padding-top: 0.5rem;
+  font-size: inherit;
+  font-weight: $headings-font-weight;
+  text-transform: uppercase;
+}
+
+// Buttons =====================================================================
+
+.btn {
+  font-family: $headings-font-family;
+  font-weight: $headings-font-weight;
+}
+
+// Typography ==================================================================
+
+// Tables ======================================================================
+
+// Forms =======================================================================
+
+// Navs ========================================================================
+
+.pagination {
+  a:hover {
+    text-decoration: none;
+  }
+}
+
+// Indicators ==================================================================
+
+// Progress bars ===============================================================
+
+// Containers ==================================================================
+
+// Footer
+.footer {
+    border-top: 1px solid rgba(0, 0, 0, .125);
 }

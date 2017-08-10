@@ -20,11 +20,12 @@
 - Proper search of documents (maybe with elastithing?)
 - Syntax highlighting for editor!
 - Place default password on first login, redirect to password reset on first login
+- Implement password reset
 - Screen for document lsit in case there are not entries yet (You have no pages, yet, want to create some?)
 
 ## Version 1.0D
 - Full rewrite to kotlin as well as possible
-- Remove all jhipster stuff thats not needed
+- Remove all jhipster stuff thats not needed (banner, jhi-prefixes...)
 - Add docker build
 - Host... somewhere (AWS?)
 - Write another blogpost :P
