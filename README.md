@@ -1,6 +1,6 @@
 # Pages 
 
-![Alt Text](./demo.gif)
+![Alt Text](pages_demo.gif)
 
 Pages is a simple markdown editor. It was built using [JHipster](https://jhipster.github.io) and a bit of Kotlin.  
 
