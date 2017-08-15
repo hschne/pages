@@ -2,14 +2,14 @@
 
 ## Version 0.1
 
-- Proper Style
+- Proper Style - Meh, CHECK
 - Login/Logout - CHECK
 - Create/Edit Documents: Markdown input with preview tab. Saving of page. Validation. Input of name/description. - CHECK
 - Delete/Edit. Preview of first lines rendered - Like gists. - CHECK
 - Enable delete button on view page (navigatino doesn't work?) - CHECK
 - Update readme.
 - check profile (production!), and set version
-- Write a blogpost
+- Write a blogpost - CHECK
 
 ## Version 0.2
 
@@ -22,8 +22,9 @@
 - Place default password on first login, redirect to password reset on first login
 - Implement password reset
 - Screen for document lsit in case there are not entries yet (You have no pages, yet, want to create some?)
+- Remove Boostrap default styles?
 
-## Version 1.0D
+## Version 1.0
 - Full rewrite to kotlin as well as possible
 - Remove all jhipster stuff thats not needed (banner, jhi-prefixes...)
 - Add docker build

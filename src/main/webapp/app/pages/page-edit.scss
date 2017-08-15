@@ -1,29 +1,6 @@
-/* ==========================================================================
-Main page styles
-========================================================================== */
 @import "../../content/scss/variables";
 
-.hipster {
-    display: inline-block;
-    width: 347px;
-    height: 497px;
-    background: url("../../content/images/hipster.png") no-repeat center top;
-    background-size: contain;
-}
-
-/* wait autoprefixer update to allow simple generation of high pixel density media query */
-@media only screen and (-webkit-min-device-pixel-ratio: 2),
-only screen and (min--moz-device-pixel-ratio: 2),
-only screen and (-o-min-device-pixel-ratio: 2/1),
-only screen and (min-device-pixel-ratio: 2),
-only screen and (min-resolution: 192dpi),
-only screen and (min-resolution: 2dppx) {
-    .hipster {
-        background: url("../../content/images/hipster2x.png") no-repeat center top;
-        background-size: contain;
-    }
-}
-
+// Make it single page
 :host {
     display: flex;
     height: 75vh;
@@ -33,5 +10,10 @@ only screen and (min-resolution: 2dppx) {
     overflow: auto;
     border: 1px solid rgba(0, 0, 0, 0.15);
     border-radius: 0.25rem;
-    padding: 0.5rem 0.75rem
+    padding: 0.5rem 0.75rem;
+}
+
+#markdown-area {
+    font-family: $font-family-monospace;
+    color: $gray;
 }

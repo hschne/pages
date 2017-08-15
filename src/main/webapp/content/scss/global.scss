@@ -4,10 +4,6 @@
 Bootstrap tweaks
 ===============================================================*/
 
-body, h1, h2, h3, h4 {
-    font-weight: 300;
-}
-
 html, body {
     height: 100%;
 }
@@ -17,7 +13,6 @@ Browser Upgrade Prompt
 ========================================================================== */
 .browserupgrade {
     margin: 0.2em 0;
-    background: #ccc;
     background: #ccc;
     color: #000;
     padding: 0.2em 0;
@@ -61,8 +56,6 @@ Generic styles
     background-color: #eee;
     opacity: 1;
 }
-
-
 
 /* ==========================================================================
 make sure browsers use the pointer cursor for anchors, even with no href
@@ -209,57 +202,69 @@ ui bootstrap tweaks
 // Journal 4.0.0
 // Bootswatch
 
-
 $web-font-path: "https://fonts.googleapis.com/css?family=News+Cycle:400,700" !default;
 @import url($web-font-path);
 
 // Navbar ======================================================================
 
 .bg-primary {
-  background-color: #fff !important;
-  border: 1px solid $gray-lightest;
+    background-color: #fff !important;
+    border: 1px solid $gray-lightest;
 }
 
 .bg-inverse {
-  background-color: #000 !important;
+    background-color: #000 !important;
 }
 
 .navbar {
-  font-size: 18px;
-  font-family: $headings-font-family;
-  font-weight: $headings-font-weight;
+    font-size: 18px;
+    font-family: $headings-font-family;
+    font-weight: $headings-font-weight;
 
-  &-nav .nav-item + .nav-item {
-    margin-left: 2rem;
-  }
+    &-nav .nav-item + .nav-item {
+        margin-left: 2rem;
+    }
 }
 
 .navbar-brand {
-  padding-top: 0.5rem;
-  font-size: inherit;
-  font-weight: $headings-font-weight;
-  text-transform: uppercase;
+    padding-top: 0.5rem;
+    font-size: inherit;
+    font-weight: $headings-font-weight;
+    text-transform: uppercase;
 }
 
 // Buttons =====================================================================
 
 .btn {
-  font-family: $headings-font-family;
-  font-weight: $headings-font-weight;
+    font-family: $headings-font-family;
+    font-weight: $headings-font-weight;
 }
 
 // Typography ==================================================================
+
+body {
+    font-family: $font-family-base;
+}
+
+h1, h2, h3, h4 {
+    font-family: $headings-font-family;
+    font-weight: $headings-font-weight;
+}
 
 // Tables ======================================================================
 
 // Forms =======================================================================
 
+button, input, optgroup, select, textarea {
+    font-family: $font-family-base;
+}
+
 // Navs ========================================================================
 
 .pagination {
-  a:hover {
-    text-decoration: none;
-  }
+    a:hover {
+        text-decoration: none;
+    }
 }
 
 // Indicators ==================================================================
@@ -270,5 +275,10 @@ $web-font-path: "https://fonts.googleapis.com/css?family=News+Cycle:400,700" !de
 
 // Footer
 .footer {
-    border-top: 1px solid rgba(0, 0, 0, .125);
+    border-top: 1px solid $gray-lightest;
+}
+
+// Markdown
+.markdown-body {
+    font-family: $font-family-monospace;
 }
