@@ -8,11 +8,12 @@
 - Delete/Edit. Preview of first lines rendered - Like gists. - CHECK
 - Enable delete button on view page (navigatino doesn't work?) - CHECK
 - Update readme.
-- check profile (production!), and set version
+- check profile (production!), and set version - CHECK
 - Write a blogpost - CHECK
 
 ## Version 0.2
 
+- Fix create new user dialog.
 - Full end to end test coverage/unit tests
 - Rewrite backend unit tests
 - Before-Navigate Handler on editing: So a user is notified that changes will be lost.
@@ -20,7 +21,7 @@
 - Proper search of documents (maybe with elastithing?)
 - Syntax highlighting for editor!
 - Place default password on first login, redirect to password reset on first login
-- Implement password reset
+- Implement password reset!!
 - Screen for document lsit in case there are not entries yet (You have no pages, yet, want to create some?)
 - Remove Boostrap default styles?
 
