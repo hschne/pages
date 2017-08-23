@@ -6,7 +6,7 @@ export class Page implements BaseEntity {
         public id?: number,
         public name?: string,
         public description?: string,
-        public content?: any,
+        public content = '',
         public user?: User,
     ) {
     }
